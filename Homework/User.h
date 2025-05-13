@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <cstring>
 #pragma warning (disable:4996)
 
@@ -16,6 +17,7 @@ class User {
 	void copyFrom(const User& other);
 	void moveFrom(User&& other);
 
+protected:virtual void createFile() = 0;
 protected: void setPassword();
 protected: void setID();
 

@@ -117,6 +117,8 @@ void User::moveFrom(User&& other)
 	other.password = nullptr;
 }
 
+
+
 void User::setPassword()
 {
 	password = new char[strlen("0000") + 1];

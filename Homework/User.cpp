@@ -44,6 +44,8 @@ void User::setPassword(const char* password)
 		throw std::invalid_argument("Password is nullptr...");
 	if (this->password == password)
 		return;
+	if (strcmp(password, "0000") == 0)
+		throw std::invalid_argument("Password can't be 0000...");
 
 	delete[] this->password;
 	this->password = new char[strlen(password) + 1];
@@ -73,4 +75,121 @@ const char* User::getPassword() const
 int User::getID() const
 {
 	return ID;
+}
+
+void User::free()
+{
+	delete[] firstName;
+	delete[] lastName;
+	delete[] email;
+	delete[] password;
+	
+	firstName = nullptr;
+	lastName = nullptr;
+	email = nullptr;
+	password = nullptr;
+}
+
+void User::copyFrom(const User& other)
+{
+	firstName = new char[strlen(other.firstName) + 1];
+	lastName = new char[strlen(other.lastName) + 1];
+	email = new char[strlen(other.email) + 1];
+	password = new char[strlen(other.password) + 1];
+
+	strcpy(firstName, other.firstName);
+	strcpy(lastName, other.lastName);
+	strcpy(email, other.email);
+	strcpy(password, other.password);
+
+}
+
+void User::moveFrom(User&& other)
+{
+	firstName = other.firstName;
+	lastName = other.lastName;
+	email = other.email;
+	password = other.password;
+
+	other.firstName = nullptr;
+	other.lastName = nullptr;
+	other.email = nullptr;
+	other.password = nullptr;
+}
+
+void User::setPassword()
+{
+	password = new char[strlen("0000") + 1];
+	strcpy(password, "0000");
+}
+
+void User::setID()
+{
+	ID = 0;
+}
+
+User::User()
+{
+	setFirstName("DEFAULT_FIRST_NAME");
+	setLastName("DEFAULT_LAST_NAME");
+	setEmail("DEFAULT_EMAIL");
+	setPassword("DEFAULT_PASSWORD");
+	ID = counter++;
+}
+
+User::User(const char* firstName, const char* lastName, const char* email, const char* password)
+{
+	setFirstName(firstName);
+	setLastName(lastName);
+	setEmail(email);
+	setPassword(password);
+	ID = counter++;
+}
+
+User::User(const User& other)
+{
+	copyFrom(other);
+	ID = counter++;
+}
+
+User::User(User&& other) noexcept
+{
+	moveFrom(std::move(other));
+	ID = counter++;
+}
+
+User& User::operator=(const User& other)
+{
+	if (this != &other) {
+		free();
+		copyFrom(other);
+	}
+	return *this;
+}
+
+User& User::operator=(User&& other) noexcept
+{
+	if (this != &other) {
+		free();
+		moveFrom(std::move(other));
+	}
+	return *this;
+}
+
+User::~User()
+{
+	free();
+	ID = -1;
+}
+
+std::ostream& operator<<(std::ostream& os, const User& user)
+{
+	os << "---------------------------------------------------\n";
+	os << "ID: " << user.ID << "\n";
+	os << "FIRST NAME: " << user.firstName << "\n";
+	os << "LAST NAME: " << user.lastName << "\n";
+	os << "EMAIL: " << user.email << "\n";
+	os << "PASSWORD: " << user.password << "\n";
+	os << "---------------------------------------------------\n";
+	return os;
 }

@@ -16,6 +16,9 @@ class User {
 	void copyFrom(const User& other);
 	void moveFrom(User&& other);
 
+protected: void setPassword();
+protected: void setID();
+
 public:
 	User();
 	User(const char* firstName, const char* lastName, const char* email, const char* password);
@@ -35,4 +38,6 @@ public:
 	const char* getEmail() const;
 	const char* getPassword() const;
 	int getID() const;
+
+	friend std::ostream& operator<<(std::ostream& os, const User& user);
 };

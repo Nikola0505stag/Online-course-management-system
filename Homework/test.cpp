@@ -1,19 +1,16 @@
 #include "User.h"
 #include "Administrator.h"
 #include "Student.h"
+#include "Teacher.h"
+#include "System.h"
 
 using namespace std;
 
 int main() {
 
 
-	Administrator admin;
-	cout << admin;
-	
-	Student st;
-	cin >> st;
-	st.addGrade(5.6);
-	cout << st << "\n" << st.getGradesCapacity() << "\t" << st.getGradesSize();
+	System st;
+	st.print();
 
 
 	return 0;

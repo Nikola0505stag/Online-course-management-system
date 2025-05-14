@@ -9,7 +9,7 @@ public:
 	Administrator(const char* firstName, const char* lastName, const char* email);
 
 	friend std::istream& operator>>(std::istream& is, Administrator& admin);
-	void createFile() override;
+	friend std::ostream& operator<<(std::ostream& os, const Administrator& admin);
 
 };
 

@@ -184,14 +184,3 @@ User::~User()
 	ID = -1;
 }
 
-std::ostream& operator<<(std::ostream& os, const User& user)
-{
-	os << "---------------------------------------------------\n";
-	os << "ID: " << user.ID << "\n";
-	os << "FIRST NAME: " << user.firstName << "\n";
-	os << "LAST NAME: " << user.lastName << "\n";
-	os << "EMAIL: " << user.email << "\n";
-	os << "PASSWORD: " << user.password << "\n";
-	os << "---------------------------------------------------\n";
-	return os;
-}

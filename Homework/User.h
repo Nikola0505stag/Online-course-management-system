@@ -17,7 +17,6 @@ class User {
 	void copyFrom(const User& other);
 	void moveFrom(User&& other);
 
-protected:virtual void createFile() = 0;
 protected: void setPassword();
 protected: void setID();
 
@@ -41,5 +40,4 @@ public:
 	const char* getPassword() const;
 	int getID() const;
 
-	friend std::ostream& operator<<(std::ostream& os, const User& user);
 };

@@ -1,14 +1,9 @@
 #include "Administrator.h"
 
-void Administrator::createFile()
-{
-}
-
 Administrator::Administrator(): User()
 {
     setPassword();
     setID();
-    createFile();
 }
 
 Administrator::Administrator(const char* firstName, const char* lastName, const char* email):User(firstName,lastName,email,
@@ -16,18 +11,10 @@ Administrator::Administrator(const char* firstName, const char* lastName, const 
 {
     setPassword();
     setID();
-    createFile();
+
 }
 
-void Administrator::createFile()
-{
-    std::string name = std::string(getEmail()) + ".txt";
 
-    std::ofstream ofs(name);
-    std::cout << "fiel";
-    ofs << "Admin...";
-    ofs.close();
-}
 
 std::istream& operator>>(std::istream& is, Administrator& admin)
 {
@@ -41,13 +28,18 @@ std::istream& operator>>(std::istream& is, Administrator& admin)
 
     is >> buff;
     admin.setEmail(buff);
-
-    std::string name;
-    name = (std::string)admin.getEmail() + ".txt";
-
-    std::ofstream ofs(name);
-    ofs << "Admin...";
-    ofs.close();
     
     return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Administrator& admin)
+{
+    os << "---------------------------------------------------\n";
+    os << "ID: " << admin.getID() << "\n";
+    os << "FIRST NAME: " << admin.getFirstName() << "\n";
+    os << "LAST NAME: " << admin.getLastName() << "\n";
+    os << "EMAIL: " << admin.getEmail() << "\n";
+    os << "PASSWORD: " << admin.getPassword() << "\n";
+    os << "---------------------------------------------------\n";
+    return os;
 }

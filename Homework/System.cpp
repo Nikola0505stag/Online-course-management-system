@@ -40,6 +40,7 @@ System::System()
 			teachers.push_back(th);
 		}
 
+
 	}
 	ifs.close();
 

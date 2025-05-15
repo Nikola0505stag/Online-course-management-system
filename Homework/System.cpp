@@ -320,6 +320,21 @@ void System::removeTeacher()
 	}
 }
 
+void System::changePassword()
+{
+	if (isAdmin)
+		return;
+
+	MyString password;
+
+	std::cout << "Insert new password:";
+	std::cin >> password;
+	
+	this->password = password;
+
+
+}
+
 std::ostream& operator<<(std::ostream& os, const System& system)
 {
 	os << "---------------------------------------------------\n";

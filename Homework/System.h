@@ -46,5 +46,7 @@ public:
 	void removeStudent();
 	void removeTeacher();
 
+	void changePassword();
+
 };
 

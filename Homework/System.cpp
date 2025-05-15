@@ -4,6 +4,7 @@
 // 2 - student
 // 3 - teacher
 
+
 System::System()
 {
 	std::ifstream ifs("Users.txt");
@@ -22,10 +23,13 @@ System::System()
 		ifs >> password;
 
 		if (buffI == 1) {
+			if (adminFound)
+				throw std::invalid_argument("There is only one admin...");
+
 			admin.setFirstName(firstName);
 			admin.setLastName(lastName);
 			admin.setEmail(email);
-			admin.setPassword(password);
+			adminFound = true;
 		}
 		else if (buffI == 2) {
 			Student st(firstName, lastName, email, password);
@@ -55,4 +59,88 @@ void System::print() const
 	for (int i = 0; i < students.getSize(); i++) {
 		std::cout << students[i];
 	}
+}
+
+const MyString& System::getFirstName() const
+{
+	return firstName;
+}
+
+const MyString& System::getLastName() const
+{
+	return lastName;
+}
+
+const MyString& System::getEmail() const
+{
+	return email;
+}
+
+const MyString& System::getPassword() const
+{
+	return password;
+}
+
+size_t System::getID() const
+{
+	return ID;
+}
+
+void System::logIn()
+{
+	size_t ID;
+	char password[1024];
+
+	std::cout << "Insert ID: ";
+	std::cin >> ID;
+	std::cout << "\nInsert Password: ";
+	std::cin >> password;
+
+	//std::cout << admin.getID() << " " << admin.getPassword();
+
+	if (ID == admin.getID() && strcmp(password,admin.getPassword()) == 0) {
+		//std::cout << "in";
+		isAdmin = true;
+		std::cout << std::endl << "Welcome Admin " << admin.getFirstName() << " " << admin.getLastName();
+
+		firstName = admin.getFirstName();
+		lastName = admin.getLastName();
+		email = admin.getEmail();
+		this->password = admin.getPassword();
+		this->ID = admin.getID();
+
+		return;
+	}
+
+	for (int i = 0; i < students.getSize(); i++) {
+		if (ID == students[i].getID() && strcmp(password, students[i].getPassword()) == 0) {
+			isStudent = true;
+			std::cout << std::endl << "Welcome Student " << students[i].getFirstName() << " " << students[i].getLastName();
+
+			firstName = students[i].getFirstName();
+			lastName = students[i].getLastName();
+			email = students[i].getEmail();
+			this->password = students[i].getPassword();
+			this->ID = students[i].getID();
+
+			return;
+		}
+	}
+
+	for (int i = 0; i < teachers.getSize(); i++) {
+		if (ID == teachers[i].getID() && strcmp(password, teachers[i].getPassword()) == 0) {
+			isTeacher = true;
+			std::cout << std::endl << "Welcome Teacher " << teachers[i].getFirstName() << " " << teachers[i].getLastName();
+
+			firstName = teachers[i].getFirstName();
+			lastName = teachers[i].getLastName();
+			email = teachers[i].getEmail();
+			this->password = teachers[i].getPassword();
+			this->ID = teachers[i].getID();
+
+			return;
+		}
+	}
+	std::cout << "Not Found...\nTry again!";
+	logIn();
 }

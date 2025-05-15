@@ -13,8 +13,8 @@ int main() {
 	st.print();
 
 	st.logIn();
-	st.addStudent();
-	st.addTeacher();
+	
+	st.removeTeacher();
 
 	return 0;
 }

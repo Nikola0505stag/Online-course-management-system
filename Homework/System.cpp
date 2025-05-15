@@ -192,6 +192,134 @@ void System::addTeacher()
 	ofs.close();
 }
 
+void System::removeStudent()
+{
+	if (!isAdmin) {
+		std::cout << "\nYou do not have the authority to remove a student.";
+		return;
+	}
+
+	std::cout << "Insert first name and last name: ";
+	char firstName[1024], lastName[1024];
+
+	std::cin >> firstName >> lastName;
+
+	std::ifstream ifs("Users.txt");
+	
+	MyVector<MyString> data;
+
+	MyString buff;
+
+	while (!ifs.eof()) {
+		ifs >> buff;
+		data.push_back(buff);
+	}
+	
+	ifs.close();
+
+	int row = 0;
+
+	for (int i = 0; i < data.getSize(); i++) {
+		if (i % 5 == 0) {
+			if (data[i] == "2") {
+				row = i / 5;
+				if (data[i + 1] == firstName && data[i + 2] == lastName) {
+					data.erase(i + 4);
+					data.erase(i + 3);
+					data.erase(i + 2);
+					data.erase(i + 1);
+					data.erase(i);
+				}
+			}
+		}
+	}
+
+	std::ofstream ofs("Users.txt");
+
+	for (int i = 0; i < data.getSize(); i++) {
+		ofs << data[i] << " ";
+		if ((i + 1) % 5 == 0) ofs << std::endl;
+	}
+
+	ofs.close();
+
+	for (int i = 0; i < students.getSize(); i++) {
+		if ((strcmp(students[i].getFirstName(), firstName) == 0) &&
+			(strcmp(students[i].getLastName(), lastName) == 0)) {
+			students.erase(i);
+		}
+	}
+
+	for (int i = 0; i < students.getSize(); i++) {
+		std::cout << std::endl;
+		std::cout << students[i];
+	}
+}
+
+void System::removeTeacher()
+{
+	if (!isAdmin) {
+		std::cout << "\nYou do not have the authority to remove a teacher.";
+		return;
+	}
+
+	std::cout << "Insert first name and last name: ";
+	char firstName[1024], lastName[1024];
+
+	std::cin >> firstName >> lastName;
+
+	std::ifstream ifs("Users.txt");
+
+	MyVector<MyString> data;
+
+	MyString buff;
+
+	while (!ifs.eof()) {
+		ifs >> buff;
+		data.push_back(buff);
+	}
+
+	ifs.close();
+
+	int row = 0;
+
+	for (int i = 0; i < data.getSize(); i++) {
+		if (i % 5 == 0) {
+			if (data[i] == "3") {
+				row = i / 5;
+				if (data[i + 1] == firstName && data[i + 2] == lastName) {
+					data.erase(i + 4);
+					data.erase(i + 3);
+					data.erase(i + 2);
+					data.erase(i + 1);
+					data.erase(i);
+				}
+			}
+		}
+	}
+
+	std::ofstream ofs("Users.txt");
+
+	for (int i = 0; i < data.getSize(); i++) {
+		ofs << data[i] << " ";
+		if ((i + 1) % 5 == 0) ofs << std::endl;
+	}
+
+	ofs.close();
+
+	for (int i = 0; i < teachers.getSize(); i++) {
+		if ((strcmp(teachers[i].getFirstName(), firstName) == 0) &&
+			(strcmp(teachers[i].getLastName(), lastName) == 0)) {
+			teachers.erase(i);
+		}
+	}
+
+	for (int i = 0; i < teachers.getSize(); i++) {
+		std::cout << std::endl;
+		std::cout << teachers[i];
+	}
+}
+
 std::ostream& operator<<(std::ostream& os, const System& system)
 {
 	os << "---------------------------------------------------\n";

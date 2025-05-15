@@ -43,5 +43,8 @@ public:
 	void addStudent();
 	void addTeacher();
 
+	void removeStudent();
+	void removeTeacher();
+
 };
 

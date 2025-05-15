@@ -7,6 +7,12 @@ class System
 {
 
 	Administrator admin;
+	MyVector<Student> students;
+	MyVector<Teacher> teachers;
+
+	bool isAdmin = false;
+	bool isTeacher = false;
+	bool isStudent = false;
 
 
 public:

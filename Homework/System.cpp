@@ -1,5 +1,7 @@
 #include "System.h"
 
+
+
 System::System()
 {
 	std::ifstream ifs("Users.txt");
@@ -16,6 +18,9 @@ System::System()
 	admin.setLastName(lastName);
 	admin.setEmail(email);
 	ifs.close();
+
+	//std::cout << students.getCapacity();
+	//std::cout << teachers.getCapacity();
 }
 
 void System::print() const

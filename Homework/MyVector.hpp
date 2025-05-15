@@ -6,8 +6,8 @@ class MyVector {
 	static constexpr size_t INITIAL_CAPACITY = 8;
 
 	T* data = nullptr;
-	size_t capacity = 0;
-	size_t size = 0;
+	size_t capacity;
+	size_t size;
 
 	void copyFrom(const MyVector<T>& other);
 	void free();

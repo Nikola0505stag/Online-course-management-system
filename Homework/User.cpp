@@ -9,7 +9,9 @@ void User::setFirstName(const char* firstName)
 	if (this->firstName == firstName)
 		return;
 
-	delete[] this->firstName;
+	if (this->firstName != nullptr)
+		delete[] this->firstName;
+
 	this->firstName = new char[strlen(firstName) + 1];
 	strcpy(this->firstName, firstName);
 }
@@ -21,7 +23,9 @@ void User::setLastName(const char* lastName)
 	if (this->lastName == lastName)
 		return;
 
-	delete[] this->lastName;
+	if (this->lastName != nullptr)
+		delete[] this->lastName;
+
 	this->lastName = new char[strlen(lastName) + 1];
 	strcpy(this->lastName, lastName);
 }
@@ -32,8 +36,10 @@ void User::setEmail(const char* email)
 		throw std::invalid_argument("Email is nullptr...");
 	if (this->email == email)
 		return;
-
-	delete[] this->email;
+	
+	if(this->email != nullptr)
+		delete[] this->email;
+	
 	this->email = new char[strlen(email) + 1];
 	strcpy(this->email, email);
 }
@@ -47,7 +53,9 @@ void User::setPassword(const char* password)
 	if (strcmp(password, "0000") == 0)
 		throw std::invalid_argument("Password can't be 0000...");
 
-	delete[] this->password;
+	if(this->password != nullptr)
+		delete[] this->password;
+
 	this->password = new char[strlen(password) + 1];
 	strcpy(this->password, password);
 }

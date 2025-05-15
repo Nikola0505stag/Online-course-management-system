@@ -5,10 +5,10 @@
 #pragma warning (disable:4996)
 
 class User {
-	char* firstName;
-	char* lastName;
-	char* email;
-	char* password;
+	char* firstName = nullptr;
+	char* lastName = nullptr;
+	char* email = nullptr;
+	char* password = nullptr;
 	static int counter;
 	int ID;
 

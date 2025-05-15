@@ -14,7 +14,7 @@ int main() {
 
 	st.logIn();
 	st.addStudent();
-
+	st.addTeacher();
 
 	return 0;
 }

@@ -5,3 +5,6 @@
 2 Dimitar Dobrev dimitur@abv.bg 1003
 3 Qna Vasileva qna@abv.bg 1004
 2 Martin Stanchev mar@abv.bg 10010
+2 Krum Krum krum@abv.bg 1010
+2 Georgi Ivanov gosho@abv.bg 1011
+3 Ivan Gadjev ivan@abv.bg 2000

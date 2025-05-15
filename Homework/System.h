@@ -41,6 +41,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const System& system);
 
 	void addStudent();
+	void addTeacher();
 
 };
 

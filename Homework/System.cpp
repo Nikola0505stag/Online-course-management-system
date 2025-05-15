@@ -169,6 +169,29 @@ void System::addStudent()
 	ofs.close();
 }
 
+void System::addTeacher()
+{
+	if (!isAdmin) {
+		std::cout << "\nYou do not have the authority to add a teacher.";
+		return;
+	}
+
+	char firstName[1024], lastName[1024], email[1024], password[1024];
+
+	std::cout << "\nInsert first name, last name, email and password";
+	std::cin >> firstName >> lastName >> email >> password;
+
+	Teacher tea(firstName, lastName, email, password);
+
+	teachers.push_back(tea);
+
+	std::ofstream ofs("Users.txt", std::ios::app);
+	ofs << "\n";
+	ofs << 3 << " " << firstName << " " << lastName << " " << email << " " << password;
+
+	ofs.close();
+}
+
 std::ostream& operator<<(std::ostream& os, const System& system)
 {
 	os << "---------------------------------------------------\n";

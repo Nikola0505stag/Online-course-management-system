@@ -38,5 +38,9 @@ public:
 
 	void logIn();
 
+	friend std::ostream& operator<<(std::ostream& os, const System& system);
+
+	void addStudent();
+
 };
 

@@ -145,3 +145,40 @@ void System::logIn()
 	std::cout << "Not Found...\nTry again!";
 	logIn();
 }
+
+void System::addStudent()
+{
+	if (!isAdmin) {
+		std::cout << "\nYou do not have the authority to add a student.";
+		return;
+	}
+
+	char firstName[1024], lastName[1024], email[1024], password[1024];
+
+	std::cout << "\nInsert first name, last name, email and password";
+	std::cin >> firstName >> lastName >> email >> password;
+
+	Student stu(firstName, lastName, email, password);
+
+	students.push_back(stu);
+
+	std::ofstream ofs("Users.txt", std::ios::app);
+	ofs << "\n";
+	ofs << 2 << " " << firstName << " " << lastName << " " << email << " " << password;
+
+	ofs.close();
+}
+
+std::ostream& operator<<(std::ostream& os, const System& system)
+{
+	os << "---------------------------------------------------\n";
+	os << "LOG IN: \n";
+	os << "---------------------------------------------------\n";
+	os << "ID: " << system.getID() << "\n";
+	os << "FIRST NAME: " << system.getFirstName() << "\n";
+	os << "LAST NAME: " << system.getLastName() << "\n";
+	os << "EMAIL: " << system.getEmail() << "\n";
+	os << "---------------------------------------------------\n";
+
+	return os;
+}

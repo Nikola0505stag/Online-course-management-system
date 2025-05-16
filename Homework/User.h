@@ -40,4 +40,8 @@ public:
 	const char* getPassword() const;
 	int getID() const;
 
+	void writeInBinary(std::ofstream& ofs) const;
+	void readFromBinary(std::ifstream& ifs);
+
+	friend std::ostream& operator<< (std::ostream& os, const User& user);
 };

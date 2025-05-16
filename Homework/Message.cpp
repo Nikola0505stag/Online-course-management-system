@@ -48,6 +48,11 @@ std::time_t Message::getTimestamp() const
 	return timestamp;
 }
 
+void Message::saveInBinary(std::ofstream& ofs) const
+{
+
+}
+
 std::ostream& operator<<(std::ostream& os, const Message& message)
 {
 	os << "-------------------------------------------\n";

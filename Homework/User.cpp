@@ -85,6 +85,57 @@ int User::getID() const
 	return ID;
 }
 
+void User::writeInBinary(std::ofstream& ofs) const
+{
+	size_t len;
+
+	len = strlen(firstName) + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(firstName, len);
+
+
+	len = strlen(lastName) + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(lastName, len);
+
+
+	len = strlen(password) + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(password, len);
+
+
+	len = strlen(email) + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(email, len);
+
+	
+	ofs.write((const char*)&ID, sizeof(ID));
+}
+
+void User::readFromBinary(std::ifstream& ifs)
+{
+	size_t len;
+	free();
+
+	ifs.read((char*)&len, sizeof(len));
+	firstName = new char[len];
+	ifs.read(firstName, len);
+
+	ifs.read((char*)&len, sizeof(len));
+	lastName = new char[len];
+	ifs.read(lastName, len);
+
+	ifs.read((char*)&len, sizeof(len));
+	password = new char[len];
+	ifs.read(password, len);
+
+	ifs.read((char*)&len, sizeof(len));
+	email = new char[len];
+	ifs.read(email, len);
+
+	ifs.read((char*)&ID, sizeof(ID));
+}
+
 void User::free()
 {
 	delete[] firstName;
@@ -192,3 +243,14 @@ User::~User()
 	ID = -1;
 }
 
+std::ostream& operator<<(std::ostream& os, const User& user)
+{
+		os << "---------------------------------------------------\n";
+		os << "ID: " << user.getID() << "\n";
+		os << "FIRST NAME: " << user.getFirstName() << "\n";
+		os << "LAST NAME: " << user.getLastName() << "\n";
+		os << "EMAIL: " << user.getEmail() << "\n";
+		os << "PASSWORD: " << user.getPassword() << "\n";
+		os << "---------------------------------------------------\n";
+		return os;
+}

@@ -24,5 +24,8 @@ public:
 	MyString getContent() const;
 	std::time_t getTimestamp() const;
 
+	void saveInBinary(std::ofstream& ofs) const;
+	void readFromBinary(std::ifstream& ifs);
+
 };
 

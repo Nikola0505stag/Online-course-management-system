@@ -48,9 +48,36 @@ std::time_t Message::getTimestamp() const
 	return timestamp;
 }
 
-void Message::saveInBinary(std::ofstream& ofs) const
+void Message::writeInBinary(std::ofstream& ofs) const
 {
+	sender.writeInBinary(ofs);
 
+	size_t len = content.getSize() + 1;
+
+	ofs.write((const char*)&len, sizeof(len));
+
+	ofs.write(content.c_str(), len);
+	
+	ofs.write((const char*)&timestamp, sizeof(timestamp));
+}
+
+void Message::readFromBinary(std::ifstream& ifs)
+{
+	sender.readFromBinary(ifs);
+
+	size_t len = 0;
+
+	ifs.read((char*)&len, sizeof(len));
+
+	char* buffer = new char[len];
+
+	ifs.read(buffer, len);
+
+	content = buffer;
+
+	delete[] buffer;
+
+	ifs.read((char*)&timestamp, sizeof(timestamp));
 }
 
 std::ostream& operator<<(std::ostream& os, const Message& message)

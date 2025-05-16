@@ -18,28 +18,25 @@ int main() {
 	st.changePassword();*/
 
 
-	/*Message m1;
+	Message m1;
 	cin >> m1;
 
-	cout << m1;*/
 
+	ofstream ofs("Message.bin", std::ios::binary);
 
-	User u1("Nikola", "Neychev", "nikneichev@abv.bg", "00101");
-	
-	ofstream ofs("Test.bin", std::ios::binary);
-
-	u1.writeInBinary(ofs);
+	m1.writeInBinary(ofs);
 
 	ofs.close();
+	
+	Message m2;
+	cout << m2 << endl << endl << endl;
 
-	ifstream ifs("Test.bin", std::ios::binary);
-
-	User u2;
-	u2.readFromBinary(ifs);
-
-	cout << u2;
+	ifstream ifs("Message.bin", std::ios::binary);
+	m2.readFromBinary(ifs);
 
 	ifs.close();
+	
+	cout << m2;
 
 	return 0;
 }

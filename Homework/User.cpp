@@ -50,8 +50,7 @@ void User::setPassword(const char* password)
 		throw std::invalid_argument("Password is nullptr...");
 	if (this->password == password)
 		return;
-	if (strcmp(password, "0000") == 0)
-		throw std::invalid_argument("Password can't be 0000...");
+
 
 	if(this->password != nullptr)
 		delete[] this->password;

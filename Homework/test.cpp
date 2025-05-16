@@ -15,7 +15,7 @@ int main() {
 
 	st.logIn();
 	
-	st.changePassword();
+	st.sendMessage();
 
 
 	return 0;

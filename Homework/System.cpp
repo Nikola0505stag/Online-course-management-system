@@ -352,6 +352,45 @@ void System::changePassword()
 
 }
 
+void System::sendMessage()
+{
+
+	std::cout << "\nInsert email: ";
+	
+	std::string email;
+	std::cin >> email;
+	std::string name = email + (std::string)".bin";
+
+	std::cout << name;
+
+	std::ofstream ofs(name, std::ios::binary | std::ios::app);
+
+	char firstName[1024];
+	strcpy(firstName, this->firstName.c_str());
+	
+	char lastName[1024];
+	strcpy(lastName, this->lastName.c_str());
+
+	char password[1024];
+	strcpy(password, this->password.c_str());
+
+	char emailC[1024];
+	strcpy(emailC, this->email.c_str());
+
+	User curr(firstName, lastName, emailC, password);
+
+	MyString content;
+
+	std::cout << std::endl << "Type what you want: \n";
+	std::cin >> content;
+
+	Message message(curr, content);
+	message.writeInBinary(ofs);
+
+	ofs.close();
+
+}
+
 std::ostream& operator<<(std::ostream& os, const System& system)
 {
 	os << "---------------------------------------------------\n";

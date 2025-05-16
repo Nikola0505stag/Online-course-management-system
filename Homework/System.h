@@ -51,5 +51,6 @@ public:
 
 	void changePassword();
 
+	void sendMessage();
 };
 

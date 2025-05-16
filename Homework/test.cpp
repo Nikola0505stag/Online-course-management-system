@@ -15,7 +15,7 @@ int main() {
 
 	st.logIn();
 	
-	st.sendMessage();
+	st.viewMessage();
 
 
 	return 0;

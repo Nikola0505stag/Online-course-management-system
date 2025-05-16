@@ -51,7 +51,7 @@ System::System()
 		
 		std::string curr = email + (std::string)".bin";
 
-		std::ofstream ofs(curr, std::ios::binary);
+		std::ofstream ofs(curr, std::ios::binary | std::ios::app);
 		ofs.close();
 
 		if (buffI == 1) {
@@ -361,8 +361,6 @@ void System::sendMessage()
 	std::cin >> email;
 	std::string name = email + (std::string)".bin";
 
-	std::cout << name;
-
 	std::ofstream ofs(name, std::ios::binary | std::ios::app);
 
 	char firstName[1024];
@@ -390,6 +388,25 @@ void System::sendMessage()
 	ofs.close();
 
 }
+
+void System::viewMessage()
+{
+	
+	char email[1024];
+	strcpy(email, this->email.c_str());
+
+	std::string name = email + (std::string)".bin";
+
+	std::ifstream ifs(name);
+
+	Message m1;
+	m1.readFromBinary(ifs);
+
+	ifs.close();
+	std::cout << m1;
+}
+
+
 
 std::ostream& operator<<(std::ostream& os, const System& system)
 {

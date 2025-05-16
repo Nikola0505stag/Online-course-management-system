@@ -27,6 +27,8 @@ class System
 	void fileToVector(MyVector<MyString>& vec) const;
 	void vectorToFile(const MyVector<MyString>& vec) const;
 
+	size_t messageCount = 0;
+
 public:
 	System();
 
@@ -52,5 +54,6 @@ public:
 	void changePassword();
 
 	void sendMessage();
+	void viewMessage();
 };
 

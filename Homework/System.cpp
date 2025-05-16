@@ -5,6 +5,32 @@
 // 3 - teacher
 
 
+void System::fileToVector(MyVector<MyString>& data) const
+{
+	std::ifstream ifs("Users.txt");
+
+	MyString buff;
+
+	while (!ifs.eof()) {
+		ifs >> buff;
+		data.push_back(buff);
+	}
+
+	ifs.close();
+}
+
+void System::vectorToFile(const MyVector<MyString>& data) const
+{
+	std::ofstream ofs("Users.txt");
+
+	for (int i = 0; i < data.getSize(); i++) {
+		ofs << data[i] << " ";
+		if ((i + 1) % 5 == 0) ofs << std::endl;
+	}
+
+	ofs.close();
+}
+
 System::System()
 {
 	std::ifstream ifs("Users.txt");
@@ -208,14 +234,7 @@ void System::removeStudent()
 	
 	MyVector<MyString> data;
 
-	MyString buff;
-
-	while (!ifs.eof()) {
-		ifs >> buff;
-		data.push_back(buff);
-	}
-	
-	ifs.close();
+	fileToVector(data);
 
 	int row = 0;
 
@@ -234,14 +253,7 @@ void System::removeStudent()
 		}
 	}
 
-	std::ofstream ofs("Users.txt");
-
-	for (int i = 0; i < data.getSize(); i++) {
-		ofs << data[i] << " ";
-		if ((i + 1) % 5 == 0) ofs << std::endl;
-	}
-
-	ofs.close();
+	vectorToFile(data);
 
 	for (int i = 0; i < students.getSize(); i++) {
 		if ((strcmp(students[i].getFirstName(), firstName) == 0) &&
@@ -272,14 +284,7 @@ void System::removeTeacher()
 
 	MyVector<MyString> data;
 
-	MyString buff;
-
-	while (!ifs.eof()) {
-		ifs >> buff;
-		data.push_back(buff);
-	}
-
-	ifs.close();
+	fileToVector(data);
 
 	int row = 0;
 
@@ -298,14 +303,7 @@ void System::removeTeacher()
 		}
 	}
 
-	std::ofstream ofs("Users.txt");
-
-	for (int i = 0; i < data.getSize(); i++) {
-		ofs << data[i] << " ";
-		if ((i + 1) % 5 == 0) ofs << std::endl;
-	}
-
-	ofs.close();
+	vectorToFile(data);
 
 	for (int i = 0; i < teachers.getSize(); i++) {
 		if ((strcmp(teachers[i].getFirstName(), firstName) == 0) &&
@@ -322,16 +320,29 @@ void System::removeTeacher()
 
 void System::changePassword()
 {
-	if (isAdmin)
-		return;
+	if (isAdmin) return;
 
 	MyString password;
 
-	std::cout << "Insert new password:";
+	std::cout << "\n\nInsert new password:";
 	std::cin >> password;
 	
 	this->password = password;
 
+
+	MyVector<MyString> data;
+
+	fileToVector(data);
+
+	for (int i = 0; i < data.getSize(); i++) {
+		if (i % 5 == 0) {
+			if (data[i + 1] == this->firstName && data[i + 2] == this->lastName) {
+				data[i + 4] = this->password;
+			}
+		}
+	}
+
+	vectorToFile(data);
 
 }
 

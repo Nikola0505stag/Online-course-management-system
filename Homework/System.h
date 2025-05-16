@@ -23,6 +23,8 @@ class System
 	bool isTeacher = false;
 	bool isStudent = false;
 
+	void fileToVector(MyVector<MyString>& vec) const;
+	void vectorToFile(const MyVector<MyString>& vec) const;
 
 public:
 	System();

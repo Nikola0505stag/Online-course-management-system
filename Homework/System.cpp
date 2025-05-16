@@ -48,6 +48,12 @@ System::System()
 		ifs >> email;
 		ifs >> password;
 
+		
+		std::string curr = email + (std::string)".bin";
+
+		std::ofstream ofs(curr, std::ios::binary);
+		ofs.close();
+
 		if (buffI == 1) {
 			if (adminFound)
 				throw std::invalid_argument("There is only one admin...");

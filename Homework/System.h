@@ -3,6 +3,7 @@
 #include "Student.h"
 #include "Teacher.h"
 #include "MyString.h"
+#include "Message.h"
 
 class System
 {

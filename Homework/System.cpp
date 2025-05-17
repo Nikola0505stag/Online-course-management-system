@@ -67,8 +67,10 @@ System::System()
 		ifs >> email;
 		ifs >> password;
 
-		
+		//MyString curr = email + ".bin";
+
 		std::string curr = email + (std::string)".bin";
+
 
 		std::ofstream ofs(curr, std::ios::binary | std::ios::app);
 		ofs.close();
@@ -382,12 +384,15 @@ void System::sendMessage()
 
 	std::cout << "\nInsert email: ";
 	
-	std::string email;
+	MyString email;
 	std::cin >> email;
 	std::cin.ignore();
-	std::string name = email + (std::string)".bin";
+	MyString name = email + ".bin";
 
-	std::ofstream ofs(name, std::ios::binary | std::ios::app);
+	char nameC[1024];
+	strcpy(nameC, name.c_str());
+
+	std::ofstream ofs(nameC, std::ios::binary | std::ios::app);
 
 	char firstName[1024];
 	strcpy(firstName, this->firstName.c_str());

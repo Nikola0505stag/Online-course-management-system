@@ -26,7 +26,7 @@ public:
 	friend std::ostream& operator<< (std::ostream& os, const Answer& answer);
 	//friend std::istream& operator>> (std::istream& is, Answer& answer);
 
-	void writeInBinary(std::ofstream& ofs);
+	void writeInBinary(std::ofstream& ofs) const;
 	void readFromBinary(std::ifstream& ifs);
 };
 

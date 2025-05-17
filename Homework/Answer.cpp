@@ -46,7 +46,7 @@ void Answer::setAnswer(MyString answer)
 	this->answer = answer;
 }
 
-void Answer::writeInBinary(std::ofstream& ofs)
+void Answer::writeInBinary(std::ofstream& ofs) const
 {
 	user.writeInBinary(ofs);
 

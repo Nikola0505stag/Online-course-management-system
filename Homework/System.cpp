@@ -402,20 +402,44 @@ void System::sendMessage()
 void System::viewMessage()
 {
 	
-	char email[1024];
-	strcpy(email, this->email.c_str());
+	if (isAdmin) {
+		std::cout << "\nWrite the email you want to check:\t";
+		MyString email;
+		std::cin >> email;
 
-	std::string name = email + (std::string)".bin";
+		MyString nameS;
+		nameS = email + ".bin";
 
-	std::ifstream ifs(name, std::ios::binary);
+		char name[1024];
+		strcpy(name, nameS.c_str());
 
-	while (ifs.peek() != EOF) {
-		Message msg;
-		msg.readFromBinary(ifs);
-		std::cout << msg << std::endl;
+		std::ifstream ifs(name, std::ios::binary);
+
+		while (ifs.peek() != EOF) {
+			Message msg;
+			msg.readFromBinary(ifs);
+			std::cout << msg << std::endl;
+		}
+
+		ifs.close();
+		
 	}
+	else {
+		char email[1024];
+		strcpy(email, this->email.c_str());
 
-	ifs.close();
+		std::string name = email + (std::string)".bin";
+
+		std::ifstream ifs(name, std::ios::binary);
+
+		while (ifs.peek() != EOF) {
+			Message msg;
+			msg.readFromBinary(ifs);
+			std::cout << msg << std::endl;
+		}
+
+		ifs.close();
+	}
 }
 
 

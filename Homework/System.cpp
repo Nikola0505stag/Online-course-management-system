@@ -459,10 +459,24 @@ void System::viewMessage()
 
 void System::deleteMessage()
 {
-	std::cout << "\n";
+	std::cout << "\nSelect which message you want to delete (counting starts from 1):";
+	size_t index;
+	std::cin >> index;
+	index--;
+
+	messages.erase(index);
+
+	MyString nameS = email + ".bin";
+	char name[1024];
+
+	strcpy(name, nameS.c_str());
+
+	std::ofstream ofs(name, std::ios::binary);
+
 	for (int i = 0; i < messages.getSize(); i++) {
-		std::cout << messages[i];
+		messages[i].writeInBinary(ofs);
 	}
+	ofs.close();
 }
 
 

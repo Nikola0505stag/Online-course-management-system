@@ -16,8 +16,9 @@ int main() {
 	st.logIn();
 	
 	st.viewMessage();
+	st.deleteMessage();
+	st.viewMessage();
 
-	//st.deleteMessage();
 
 	return 0;
 }

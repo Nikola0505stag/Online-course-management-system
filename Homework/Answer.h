@@ -1,22 +1,24 @@
 #pragma once
 #include "User.h"
 #include "MyString.h"
+#include "Student.h"
+
 class Answer
 {
-	User user;
+	Student user;
 	MyString answer;
 
 public:
 	Answer();
-	Answer(User user, MyString answer);
+	Answer(Student user, MyString answer);
 	Answer(const char* firstName, const char* lastName, const char* email,
 		const char* password, MyString answer);
 
-	const User getUser() const;
+	const Student getStudent() const;
 	const MyString getAnswer() const;
 	
-	void setUser(User user);
-	void setUser(const char* firstName, const char* lastName, const char* email,
+	void setStudent(Student user);
+	void setStudent(const char* firstName, const char* lastName, const char* email,
 		const char* password);
 	void setAnswer(MyString answer);
 

@@ -20,7 +20,7 @@ int main() {
 	//st.viewMessage();
 
 
-	User test("Nikola", "Neychev", "nikneichev@abv.bg", "1231");
+	Student test("Nikola", "Neychev", "nikneichev@abv.bg", "1231");
 
 	Answer a1(test,"My homework .... some code here");
 

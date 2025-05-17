@@ -2,24 +2,24 @@
 
 Answer::Answer()
 {
-	setUser("DEFAULT_FIRST_NAME", "DEFAULT_LAST_NAME",
+	setStudent("DEFAULT_FIRST_NAME", "DEFAULT_LAST_NAME",
 		"DEFAULT_EMAIL", "DEFAULT_PASSWORD");
 	setAnswer("DEFAULT_ANSWER");
 }
 
-Answer::Answer(User user, MyString answer)
+Answer::Answer(Student user, MyString answer)
 {
-	setUser(user);
+	setStudent(user);
 	setAnswer(answer);
 }
 
 Answer::Answer(const char* firstName, const char* lastName, const char* email, const char* password, MyString answer)
 {
-	setUser(firstName, lastName, email, password);
+	setStudent(firstName, lastName, email, password);
 	setAnswer(answer);
 }
 
-const User Answer::getUser() const
+const Student Answer::getStudent() const
 {
 	return user;
 }
@@ -29,14 +29,14 @@ const MyString Answer::getAnswer() const
 	return answer;
 }
 
-void Answer::setUser(User user)
+void Answer::setStudent(Student user)
 {
 	this->user = std::move(user);
 }
 
-void Answer::setUser(const char* firstName, const char* lastName, const char* email, const char* password)
+void Answer::setStudent(const char* firstName, const char* lastName, const char* email, const char* password)
 {
-	User curr(firstName, lastName, email, password);
+	Student curr(firstName, lastName, email, password);
 
 	this->user = std::move(curr);
 }

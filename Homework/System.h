@@ -28,7 +28,7 @@ class System
 	void fileToVector(MyVector<MyString>& vec) const;
 	void vectorToFile(const MyVector<MyString>& vec) const;
 
-	size_t messageCount = 0;
+	//size_t messageCount = 0;
 
 public:
 	System();

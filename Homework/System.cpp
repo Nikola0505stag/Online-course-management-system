@@ -134,7 +134,7 @@ void System::logIn()
 	if (ID == admin.getID() && strcmp(password,admin.getPassword()) == 0) {
 		//std::cout << "in";
 		isAdmin = true;
-		std::cout << std::endl << "Welcome Admin " << admin.getFirstName() << " " << admin.getLastName();
+		std::cout << std::endl << "Welcome Admin " << admin.getFirstName() << " " << admin.getLastName() << std::endl;
 
 		firstName = admin.getFirstName();
 		lastName = admin.getLastName();
@@ -148,7 +148,7 @@ void System::logIn()
 	for (int i = 0; i < students.getSize(); i++) {
 		if (ID == students[i].getID() && strcmp(password, students[i].getPassword()) == 0) {
 			isStudent = true;
-			std::cout << std::endl << "Welcome Student " << students[i].getFirstName() << " " << students[i].getLastName();
+			std::cout << std::endl << "Welcome Student " << students[i].getFirstName() << " " << students[i].getLastName() << std::endl;
 
 			firstName = students[i].getFirstName();
 			lastName = students[i].getLastName();
@@ -163,7 +163,7 @@ void System::logIn()
 	for (int i = 0; i < teachers.getSize(); i++) {
 		if (ID == teachers[i].getID() && strcmp(password, teachers[i].getPassword()) == 0) {
 			isTeacher = true;
-			std::cout << std::endl << "Welcome Teacher " << teachers[i].getFirstName() << " " << teachers[i].getLastName();
+			std::cout << std::endl << "Welcome Teacher " << teachers[i].getFirstName() << " " << teachers[i].getLastName() << std::endl;
 
 			firstName = teachers[i].getFirstName();
 			lastName = teachers[i].getLastName();
@@ -407,13 +407,15 @@ void System::viewMessage()
 
 	std::string name = email + (std::string)".bin";
 
-	std::ifstream ifs(name);
+	std::ifstream ifs(name, std::ios::binary);
 
-	Message m1;
-	m1.readFromBinary(ifs);
+	while (ifs.peek() != EOF) {
+		Message msg;
+		msg.readFromBinary(ifs);
+		std::cout << msg << std::endl;
+	}
 
 	ifs.close();
-	std::cout << m1;
 }
 
 

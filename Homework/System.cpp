@@ -359,6 +359,7 @@ void System::sendMessage()
 	
 	std::string email;
 	std::cin >> email;
+	std::cin.ignore();
 	std::string name = email + (std::string)".bin";
 
 	std::ofstream ofs(name, std::ios::binary | std::ios::app);
@@ -380,7 +381,16 @@ void System::sendMessage()
 	MyString content;
 
 	std::cout << std::endl << "Type what you want: \n";
-	std::cin >> content;
+
+	char buff[1024];
+
+	std::cin.getline(buff,1024);
+
+	//std::cout << "\n\n" << buff;
+
+	content = buff;
+
+	//std::cout << std::endl << std::endl << content;
 
 	Message message(curr, content);
 	message.writeInBinary(ofs);

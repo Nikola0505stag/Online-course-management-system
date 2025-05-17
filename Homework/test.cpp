@@ -17,6 +17,5 @@ int main() {
 	
 	st.viewMessage();
 
-
 	return 0;
 }

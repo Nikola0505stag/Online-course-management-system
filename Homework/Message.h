@@ -3,6 +3,7 @@
 #include <ctime>
 #include "MyString.h"
 #include "User.h"
+#include <fstream>
 
 class Message
 {

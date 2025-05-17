@@ -4,6 +4,7 @@
 #include "Teacher.h"
 #include "MyString.h"
 #include "Message.h"
+#include <iostream>
 
 class System
 {

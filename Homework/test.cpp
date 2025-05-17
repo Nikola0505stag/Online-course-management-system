@@ -17,5 +17,7 @@ int main() {
 	
 	st.viewMessage();
 
+	//st.deleteMessage();
+
 	return 0;
 }

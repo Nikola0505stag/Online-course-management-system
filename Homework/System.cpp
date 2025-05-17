@@ -31,6 +31,25 @@ void System::vectorToFile(const MyVector<MyString>& data) const
 	ofs.close();
 }
 
+void System::makeMessages()
+{
+	MyString nameS;
+	nameS = email + ".bin";
+
+	char name[1024];
+	strcpy(name, nameS.c_str());
+
+	std::ifstream ifs(name, std::ios::binary);
+
+	while (ifs.peek() != EOF) {
+		Message msg;
+		msg.readFromBinary(ifs);
+		messages.push_back(msg);
+	}
+
+	//std::cout << messages.getSize();
+}
+
 System::System()
 {
 	std::ifstream ifs("Users.txt");
@@ -142,6 +161,8 @@ void System::logIn()
 		this->password = admin.getPassword();
 		this->ID = admin.getID();
 
+		makeMessages();
+
 		return;
 	}
 
@@ -155,6 +176,8 @@ void System::logIn()
 			email = students[i].getEmail();
 			this->password = students[i].getPassword();
 			this->ID = students[i].getID();
+
+			makeMessages();
 
 			return;
 		}
@@ -170,6 +193,8 @@ void System::logIn()
 			email = teachers[i].getEmail();
 			this->password = teachers[i].getPassword();
 			this->ID = teachers[i].getID();
+
+			makeMessages();
 
 			return;
 		}
@@ -425,20 +450,18 @@ void System::viewMessage()
 		
 	}
 	else {
-		char email[1024];
-		strcpy(email, this->email.c_str());
-
-		std::string name = email + (std::string)".bin";
-
-		std::ifstream ifs(name, std::ios::binary);
-
-		while (ifs.peek() != EOF) {
-			Message msg;
-			msg.readFromBinary(ifs);
-			std::cout << msg << std::endl;
+		std::cout << "\n";
+		for (int i = 0; i < messages.getSize(); i++) {
+			std::cout << messages[i];
 		}
+	}
+}
 
-		ifs.close();
+void System::deleteMessage()
+{
+	std::cout << "\n";
+	for (int i = 0; i < messages.getSize(); i++) {
+		std::cout << messages[i];
 	}
 }
 

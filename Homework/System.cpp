@@ -543,6 +543,8 @@ void System::addStudentInCourse()
 		MyString firstName;
 		MyString lastName;
 
+		size_t index = -1;
+
 		char firstNameC[1024];
 		char lastNameC[1024];
 		char password[1024];
@@ -557,13 +559,14 @@ void System::addStudentInCourse()
 
 		std::cout << "Insert name of the course: \n";
 		char buff[1024];
+		std::cin.ignore();
 		std::cin.getline(buff, 1024);
-		MyString courseName = buff; std::cout << courseName;
+		MyString courseName = buff; //std::cout << courseName;
 
 		for (int i = 0; i < courses.getSize(); i++) {
 			//std::cout << "in";
 			if (courses[i].getDescription() == courseName) {
-				std::cout << "found";
+				index = i;
 			}
 		}
 
@@ -578,12 +581,22 @@ void System::addStudentInCourse()
 				lastName == students[i].getLastName()) {
 				// da napisha kakvo stava kato se vidi che studenta realno sustehstvuva
 				found = true;
+				if (index == -1)
+					throw std::invalid_argument("Wrong course");
+				courses[index].addStudent(students[i]);
 			}
 		}
 		if (!found) {
 			std::cout << "There is no such student.";
 			addStudentInCourse();
 		}
+
+		std::ofstream ofs("Courses.bin", std::ios::binary);
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			courses[i].writeInBinary(ofs);
+		}
+		ofs.close();
 	}
 	else {
 		std::cout << "\nYou do not have the authority to add student in course.\n";

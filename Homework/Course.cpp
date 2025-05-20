@@ -128,8 +128,11 @@ std::ostream& operator<<(std::ostream& os, const Course& course)
 		os << course.tasks[i];
 	}
 	os << "---------------------------------------------------\n";
+	os << "STUDENTS: \n";
+	os << "---------------------------------------------------\n";
 	for (int i = 0; i < course.students.getSize(); i++) {
 		os << course.students[i];
 	}
+	os << "---------------------------------------------------\n";
 	return os;
 }

@@ -18,12 +18,12 @@ int main() {
 	st.logIn();
 	
 
-	st.addCourse();
+	//st.addCourse();
 
-	cout << "\n\n\n\n";
+	//cout << "\n\n\n\n";
 	st.printCourses();
 
-	cout << "\n\n\n\n";
+	//cout << "\n\n\n\n";
 
 	st.addStudentInCourse();
 	

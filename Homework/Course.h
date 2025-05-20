@@ -28,6 +28,11 @@ public:
 	
 	MyString getDescription() const;
 
+	friend std::ostream& operator<<(std::ostream& os, const Course& course);
 
+	void addTask(Task task);
+
+	void writeInBinary(std::ofstream& ofs) const;
+	void readFromBinary(std::ifstream& ifs);
 };
 

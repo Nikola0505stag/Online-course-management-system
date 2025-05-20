@@ -6,7 +6,6 @@
 
 class Task
 {
-	//Teacher teacher;
 	MyString description;
 	MyVector<Answer> answers;
 

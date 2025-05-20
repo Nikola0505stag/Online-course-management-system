@@ -47,3 +47,65 @@ MyString Course::getDescription() const
 {
 	return description;
 }
+
+void Course::addTask(Task task)
+{
+	tasks.push_back(task);
+}
+
+void Course::writeInBinary(std::ofstream& ofs) const
+{
+	teacher.writeInBinary(ofs);
+
+	size_t len = description.getSize() + 1;
+
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(description.c_str(), len);
+
+	size_t size = tasks.getSize();
+	ofs.write((const char*)&size, sizeof(size));
+
+	for (int i = 0; i < tasks.getSize(); i++) {
+		tasks[i].writeInBinary(ofs);
+	}
+}
+
+void Course::readFromBinary(std::ifstream& ifs)
+{
+	teacher.readFromBinary(ifs);
+	size_t len;
+	ifs.read((char*)&len, sizeof(len));
+
+	char* buff = new char[len];
+	ifs.read(buff, len);
+	description = buff;
+
+	size_t size;
+	ifs.read((char*)&size, sizeof(size));
+
+	for (int i = 0; i < size; i++) {
+		Task task;
+		task.readFromBinary(ifs);
+		tasks.push_back(task);
+	}
+}
+
+std::ostream& operator<<(std::ostream& os, const Course& course)
+{
+	os << "---------------------------------------------------\n";
+	os << "TEACHER: \n";
+	os << "---------------------------------------------------\n";
+	os << course.teacher;
+	os << "---------------------------------------------------\n";
+	os << "DESCRIPTION: \n";
+	os << "---------------------------------------------------\n";
+	os << course.description << "\n";
+	os << "---------------------------------------------------\n";
+	os << "TASKS: \n";
+	os << "---------------------------------------------------\n";
+	for (int i = 0; i < course.tasks.getSize(); i++) {
+		os << course.tasks[i];
+	}
+	os << "---------------------------------------------------\n";
+	return os;
+}

@@ -50,6 +50,19 @@ void System::makeMessages()
 	//std::cout << messages.getSize();
 }
 
+void System::makeCourses()
+{
+	std::ifstream ifs("Courses.bin", std::ios::binary);
+
+	while (ifs.peek() != EOF) {
+		Course course;
+		course.readFromBinary(ifs);
+		courses.push_back(course);
+	}
+	ifs.close();
+}
+
+
 System::System()
 {
 	std::ifstream ifs("Users.txt");
@@ -149,6 +162,8 @@ void System::logIn()
 	std::cin >> ID;
 	std::cout << "\nInsert Password: ";
 	std::cin >> password;
+
+	makeCourses();
 
 	//std::cout << admin.getID() << " " << admin.getPassword();
 
@@ -482,6 +497,49 @@ void System::deleteMessage()
 		messages[i].writeInBinary(ofs);
 	}
 	ofs.close();
+}
+
+void System::addCourse()
+{
+	if (isTeacher) {
+		char firstName[1024];
+		char lastName[1024];
+		char email[1024];
+		char password[1024];
+
+		strcpy(firstName, this->firstName.c_str());
+		strcpy(lastName, this->lastName.c_str());
+		strcpy(email, this->email.c_str());
+		strcpy(password, this->password.c_str());
+
+
+		Teacher teacher(firstName, lastName, email, password);
+
+		char buff[1024]; 
+		MyString description;
+
+		std::cout << "Insert name for the course: \n";
+		std::cin.ignore();
+		std::cin.getline(buff,1024);
+
+		description = buff;
+
+		Course course(teacher, description);
+
+		courses.push_back(course);
+
+		std::ofstream ofs("Courses.bin", std::ios::binary | std::ios::app);
+		course.writeInBinary(ofs);
+		ofs.close();
+	}
+}
+
+void System::printCourses()
+{
+	for (int i = 0; i < courses.getSize(); i++) {
+		std::cout << courses[i];
+		std::cout << "\n\n";
+	}
 }
 
 

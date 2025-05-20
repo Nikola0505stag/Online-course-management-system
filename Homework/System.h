@@ -5,6 +5,7 @@
 #include "MyString.h"
 #include "Message.h"
 #include <iostream>
+#include "Course.h"
 
 class System
 {
@@ -31,8 +32,10 @@ class System
 	//size_t messageCount = 0;
 
 	MyVector<Message> messages;
+	MyVector<Course> courses;
 
 	void makeMessages();
+	void makeCourses();
 
 public:
 	System();
@@ -61,5 +64,10 @@ public:
 	void sendMessage();
 	void viewMessage();
 	void deleteMessage();
+
+	void addCourse();
+	void addStudentInCourse();
+
+	void printCourses();
 };
 

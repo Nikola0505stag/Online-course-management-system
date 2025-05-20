@@ -68,6 +68,12 @@ void Course::writeInBinary(std::ofstream& ofs) const
 	for (int i = 0; i < tasks.getSize(); i++) {
 		tasks[i].writeInBinary(ofs);
 	}
+
+	size = students.getSize();
+	ofs.write((const char*)&size, sizeof(size));
+	for (int i = 0; i < size; i++) {
+		students[i].writeInBinary(ofs);
+	}
 }
 
 void Course::readFromBinary(std::ifstream& ifs)
@@ -80,6 +86,9 @@ void Course::readFromBinary(std::ifstream& ifs)
 	ifs.read(buff, len);
 	description = buff;
 
+
+	delete[] buff;
+
 	size_t size;
 	ifs.read((char*)&size, sizeof(size));
 
@@ -88,6 +97,18 @@ void Course::readFromBinary(std::ifstream& ifs)
 		task.readFromBinary(ifs);
 		tasks.push_back(task);
 	}
+
+	ifs.read((char*)&size, sizeof(size));
+	for (int i = 0; i < size; i++) {
+		Student student;
+		student.readFromBinary(ifs);
+		students.push_back(student);
+	}
+}
+
+void Course::addStudent(Student student)
+{
+	students.push_back(student);
 }
 
 std::ostream& operator<<(std::ostream& os, const Course& course)
@@ -107,5 +128,8 @@ std::ostream& operator<<(std::ostream& os, const Course& course)
 		os << course.tasks[i];
 	}
 	os << "---------------------------------------------------\n";
+	for (int i = 0; i < course.students.getSize(); i++) {
+		os << course.students[i];
+	}
 	return os;
 }

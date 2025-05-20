@@ -11,6 +11,7 @@ class Course
 	Teacher teacher;
 	MyString description;
 	MyVector<Task> tasks;
+	MyVector<Student> students;
 
 public:
 	Course();
@@ -34,5 +35,7 @@ public:
 
 	void writeInBinary(std::ofstream& ofs) const;
 	void readFromBinary(std::ifstream& ifs);
+
+	void addStudent(Student student);
 };
 

@@ -2,42 +2,18 @@
 
 Task::Task()
 {
-    setTeacher("DEFAULT_FIRST_NAME", "DEFAULT_LAST_NAME", "DEFAULT_EMAIL", "DEFAULT_PASSWORD");
     setDescription("DEFAULT_DESCRIPTION");
 }
 
-Task::Task(Teacher teacher, MyString description)
+Task::Task(MyString description)
 {
-    setTeacher(teacher);
     setDescription(description);
 }
 
-Task::Task(const char* firstName, const char* lastName, const char* email, const char* password, 
-    MyString description)
-{
-    setTeacher(firstName, lastName, email, password);
-    setDescription(description);
-}
-
-void Task::setTeacher(Teacher teacher)
-{
-    this->teacher = std::move(teacher);
-}
-
-void Task::setTeacher(const char* firstName, const char* lastName, const char* email, const char* password)
-{
-    Teacher curr(firstName, lastName, email, password);
-    this->teacher = std::move(curr);
-}
 
 void Task::setDescription(MyString description)
 {
     this->description = description;
-}
-
-const Teacher Task::getTeacher() const
-{
-    return teacher;
 }
 
 const MyString Task::getDescription() const
@@ -52,7 +28,6 @@ void Task::addAnswer(Answer answer)
 
 void Task::writeInBinary(std::ofstream& ofs) const
 {
-    teacher.writeInBinary(ofs);
 
     size_t len = description.getSize() + 1;
 
@@ -71,7 +46,6 @@ void Task::writeInBinary(std::ofstream& ofs) const
 
 void Task::readFromBinary(std::ifstream& ifs)
 {
-    teacher.readFromBinary(ifs);
 
     size_t len;
 
@@ -96,11 +70,8 @@ void Task::readFromBinary(std::ifstream& ifs)
 std::ostream& operator<<(std::ostream& os, const Task& task)
 {
     os << "----------------------------------------------\n";
-    os << "TEACHER: \n";
-    os << "----------------------------------------------\n";
-    os << task.teacher;
-    os << "----------------------------------------------\n";
     os << "DESCRIPTION: \n";
+    os << "----------------------------------------------\n";
     os << task.description << "\n";
     os << "----------------------------------------------\n";
     os << "ANSWERS: \n";

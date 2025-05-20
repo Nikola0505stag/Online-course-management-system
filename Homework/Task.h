@@ -6,22 +6,16 @@
 
 class Task
 {
-	Teacher teacher;
+	//Teacher teacher;
 	MyString description;
 	MyVector<Answer> answers;
 
 public:
 	Task();
-	Task(Teacher teacher, MyString description);
-	Task(const char* firstName, const char* lastName, const char* email, const char* password,
-		MyString description);
-
-	void setTeacher(Teacher teacher);
-	void setTeacher(const char* firstName, const char* lastName, const char* email,
-		const char* password);
+	Task(MyString description);
+;
 	void setDescription(MyString description);
 
-	const Teacher getTeacher() const;
 	const MyString getDescription() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const Task& task);

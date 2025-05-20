@@ -532,10 +532,65 @@ void System::addCourse()
 		course.writeInBinary(ofs);
 		ofs.close();
 	}
+	else {
+		std::cout << "\nYou do not have the authority to create a course.";
+	}
 }
 
-void System::printCourses()
+void System::addStudentInCourse()
 {
+	if (isTeacher) {
+		MyString firstName;
+		MyString lastName;
+
+		char firstNameC[1024];
+		char lastNameC[1024];
+		char password[1024];
+		char email[1024];
+
+		strcpy(firstNameC, this->firstName.c_str());
+		strcpy(lastNameC, this->lastName.c_str());
+		strcpy(email, this->email.c_str());
+		strcpy(password, this->password.c_str());
+
+		Teacher teacher(firstNameC, lastNameC, email, password);
+
+		std::cout << "Insert name of the course: \n";
+		char buff[1024];
+		std::cin.getline(buff, 1024);
+		MyString courseName = buff; std::cout << courseName;
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			//std::cout << "in";
+			if (courses[i].getDescription() == courseName) {
+				std::cout << "found";
+			}
+		}
+
+
+		std::cout << "Insert first name and last name of the student: \n";
+		std::cin >> firstName >> lastName;
+
+		bool found = false;
+
+		for (int i = 0; i < students.getSize(); i++) {
+			if (firstName == students[i].getFirstName() && 
+				lastName == students[i].getLastName()) {
+				// da napisha kakvo stava kato se vidi che studenta realno sustehstvuva
+				found = true;
+			}
+		}
+		if (!found) {
+			std::cout << "There is no such student.";
+			addStudentInCourse();
+		}
+	}
+	else {
+		std::cout << "\nYou do not have the authority to add student in course.\n";
+	}
+}
+
+void System::printCourses() const{
 	for (int i = 0; i < courses.getSize(); i++) {
 		std::cout << courses[i];
 		std::cout << "\n\n";

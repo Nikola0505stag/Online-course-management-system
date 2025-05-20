@@ -22,6 +22,10 @@ int main() {
 
 	cout << "\n\n\n\n";
 	st.printCourses();
+
+	cout << "\n\n\n\n";
+
+	st.addStudentInCourse();
 	
 	return 0;
 }

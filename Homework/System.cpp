@@ -637,9 +637,27 @@ void System::addTaskInCourse()
 				index = i;
 			}
 		}
-		std::cout << index;
+		//std::cout << index;
+
+		if (index == -1)
+			throw std::invalid_argument("Course not found...");
+
+		std::cout << "Description/name for your task: \n";
+		//char buff[1024];
+		//std::cin.ignore();
+		std::cin.getline(buff, 1024);
+		MyString description = buff;
+		Task task(description);
+
+		courses[index].addTask(task);
 
 
+		std::ofstream ofs("Courses.bin", std::ios::binary);
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			courses[i].writeInBinary(ofs);
+		}
+		ofs.close();
 	}
 	else {
 		std::cout << "\nYou do not have the authority to add student in course.\n";

@@ -25,7 +25,7 @@ int main() {
 
 	//cout << "\n\n\n\n";
 
-	st.addStudentInCourse();
+	st.addTaskInCourse();
 	
 	return 0;
 }

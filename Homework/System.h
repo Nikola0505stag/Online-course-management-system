@@ -67,6 +67,7 @@ public:
 
 	void addCourse();
 	void addStudentInCourse();
+	void addTaskInCourse();
 
 	void printCourses() const;
 };

@@ -603,6 +603,49 @@ void System::addStudentInCourse()
 	}
 }
 
+void System::addTaskInCourse()
+{
+	if (isTeacher) {
+		MyString firstName;
+		MyString lastName;
+
+		size_t index = -1;
+
+		char firstNameC[1024];
+		char lastNameC[1024];
+		char password[1024];
+		char email[1024];
+
+		strcpy(firstNameC, this->firstName.c_str());
+		strcpy(lastNameC, this->lastName.c_str());
+		strcpy(email, this->email.c_str());
+		strcpy(password, this->password.c_str());
+
+		Teacher teacher(firstNameC, lastNameC, email, password);
+
+		std::cout << "Insert name of the course: \n";
+		char buff[1024];
+		std::cin.ignore();
+		std::cin.getline(buff, 1024);
+		MyString courseName = buff; //std::cout << courseName;
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			//std::cout << "in";
+			if (courses[i].getDescription() == courseName && 
+				strcmp(firstNameC,courses[i].getTeacher().getFirstName()) == 0 && 
+				strcmp(lastNameC,courses[i].getTeacher().getLastName()) == 0) {
+				index = i;
+			}
+		}
+		std::cout << index;
+
+
+	}
+	else {
+		std::cout << "\nYou do not have the authority to add student in course.\n";
+	}
+}
+
 void System::printCourses() const{
 	for (int i = 0; i < courses.getSize(); i++) {
 		std::cout << courses[i];

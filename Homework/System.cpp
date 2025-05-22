@@ -706,7 +706,7 @@ void System::addAnswer()
 			//std::cin.ignore();
 			std::cin.getline(buff, 1024);
 			desc = buff;
-			std::cout << "\n" << desc << "\n";
+			//std::cout << "\n" << desc << "\n";
 
 			for (int i = 0; i < courses[courseIndex].getTasksSize(); i++) {
 				if (courses[courseIndex].getTask(i).getDescription() == desc) {
@@ -746,9 +746,29 @@ void System::addAnswer()
 }
 
 void System::printCourses() const {
-	for (int i = 0; i < courses.getSize(); i++) {
-		std::cout << courses[i];
-		std::cout << "\n\n";
+	if (isTeacher) {
+		for (int i = 0; i < courses.getSize(); i++) {
+			if (courses[i].getTeacher().getFirstName() == this->firstName &&
+				courses[i].getTeacher().getLastName() == this->lastName) {
+				std::cout << courses[i];
+			}
+		}
+	}
+	else if (isAdmin) {
+		for (int i = 0; i < courses.getSize(); i++) {
+			std::cout << courses[i];
+		}
+	}
+	else {
+		//std::cout << "\nYou do not have the authority to view courses.\n";
+		for (int i = 0; i < courses.getSize(); i++) {
+			for (int j = 0; j < courses[i].getStudentsSize(); j++) {
+				if (courses[i].getStudents(j).getFirstName() == this->firstName &&
+					courses[i].getStudents(j).getLastName() == this->lastName) {
+					std::cout << courses[i];
+				}
+			}
+		}
 	}
 }
 

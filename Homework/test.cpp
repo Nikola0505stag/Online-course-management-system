@@ -23,7 +23,9 @@ int main() {
 
 	//cout << "\n\n\n\n";
 	st.printCourses();
-
+	//st.addStudentInCourse();
+	//st.addTaskInCourse();
+	//st.addAnswer();
 	//cout << "\n\n\n\n";
 
 	//st.addTaskInCourse();

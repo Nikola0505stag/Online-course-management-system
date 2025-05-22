@@ -34,7 +34,7 @@ std::ostream& operator<<(std::ostream& os, const Teacher& teacher)
     os << "FIRST NAME: " << teacher.getFirstName() << "\n";
     os << "LAST NAME: " << teacher.getLastName() << "\n";
     os << "EMAIL: " << teacher.getEmail() << "\n";
-    os << "PASSWORD: " << teacher.getPassword() << "\n";
+    //os << "PASSWORD: " << teacher.getPassword() << "\n";
     os << "---------------------------------------------------\n";
     return os;
 }

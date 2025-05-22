@@ -130,6 +130,7 @@
     <ClInclude Include="Administrator.h" />
     <ClInclude Include="Answer.h" />
     <ClInclude Include="Course.h" />
+    <ClInclude Include="Grade.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="MyString.h" />
     <ClInclude Include="MyVector.hpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="Administrator.cpp" />
     <ClCompile Include="Answer.cpp" />
     <ClCompile Include="Course.cpp" />
+    <ClCompile Include="Grade.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MyString.cpp" />
     <ClCompile Include="Student.cpp" />

@@ -1,4 +1,3 @@
-
 #include "User.h"
 #include "Administrator.h"
 #include "Student.h"
@@ -8,21 +7,22 @@
 #include "Answer.h"
 #include "Task.h"
 #include "Course.h"
+#include "Grade.h"
 
 using namespace std;
 
 int main() {
 
 
-	System st;
+	/*System st;
 	st.print();
-	st.logIn();
+	st.logIn();*/
 
 
 	//st.addCourse();
 
 	//cout << "\n\n\n\n";
-	st.printCourses();
+	//st.printCourses();
 	//st.addStudentInCourse();
 	//st.addTaskInCourse();
 	//st.addAnswer();
@@ -31,6 +31,12 @@ int main() {
 	//st.addTaskInCourse();
 
 	//st.addAnswer();
+
+
+	Grade grade; 
+	cout << grade << "\n";
+	cin >> grade;
+	cout << "\n\n" << grade << "\n\n";
 
 	return 0;
 }

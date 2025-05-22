@@ -1,3 +1,4 @@
+
 #include "Message.h"
 
 Message::Message()
@@ -57,7 +58,7 @@ void Message::writeInBinary(std::ofstream& ofs) const
 	ofs.write((const char*)&len, sizeof(len));
 
 	ofs.write(content.c_str(), len);
-	
+
 	ofs.write((const char*)&timestamp, sizeof(timestamp));
 }
 
@@ -117,9 +118,9 @@ std::istream& operator>>(std::istream& is, Message& message)
 
 	is.ignore();
 	is.getline(buff, 1024);
-	
+
 	message.setContent(buff);
-	
+
 	message.timestamp = std::time(nullptr);
 
 	return is;

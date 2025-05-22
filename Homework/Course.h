@@ -26,7 +26,7 @@ public:
 	void setDescription(MyString description);
 
 	Teacher getTeacher() const;
-	
+
 	MyString getDescription() const;
 
 	friend std::ostream& operator<<(std::ostream& os, const Course& course);
@@ -37,5 +37,10 @@ public:
 	void readFromBinary(std::ifstream& ifs);
 
 	void addStudent(Student student);
-};
 
+	const Student& getStudents(int index) const;
+	size_t getStudentsSize() const;
+
+	size_t getTasksSize() const;
+	Task& getTask(int index);
+};

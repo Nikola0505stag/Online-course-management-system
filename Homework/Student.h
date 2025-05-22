@@ -1,3 +1,4 @@
+
 #pragma once
 #include "MyVector.hpp"
 #include "User.h"
@@ -19,4 +20,3 @@ public:
 	friend std::istream& operator>>(std::istream& is, Student& student);
 	friend std::ostream& operator<<(std::ostream& os, const Student& student);
 };
-

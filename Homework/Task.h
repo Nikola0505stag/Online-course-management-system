@@ -1,3 +1,4 @@
+
 #pragma once
 #include "User.h"
 #include "Answer.h"
@@ -12,7 +13,6 @@ class Task
 public:
 	Task();
 	Task(MyString description);
-;
 	void setDescription(MyString description);
 
 	const MyString getDescription() const;
@@ -25,4 +25,3 @@ public:
 	void readFromBinary(std::ifstream& ifs);
 
 };
-

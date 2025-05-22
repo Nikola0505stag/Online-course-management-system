@@ -1,3 +1,4 @@
+
 #include "User.h"
 #include "Administrator.h"
 #include "Student.h"
@@ -16,7 +17,7 @@ int main() {
 	System st;
 	st.print();
 	st.logIn();
-	
+
 
 	//st.addCourse();
 
@@ -25,7 +26,9 @@ int main() {
 
 	//cout << "\n\n\n\n";
 
-	st.addTaskInCourse();
-	
+	//st.addTaskInCourse();
+
+	//st.addAnswer();
+
 	return 0;
 }

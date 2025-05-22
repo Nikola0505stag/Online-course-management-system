@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include <ctime>
@@ -29,4 +30,3 @@ public:
 	void readFromBinary(std::ifstream& ifs);
 
 };
-

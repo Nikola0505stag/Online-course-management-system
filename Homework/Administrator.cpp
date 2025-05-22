@@ -1,12 +1,12 @@
 #include "Administrator.h"
 
-Administrator::Administrator(): User()
+Administrator::Administrator() : User()
 {
     setPassword();
     setID();
 }
 
-Administrator::Administrator(const char* firstName, const char* lastName, const char* email):User(firstName,lastName,email,
+Administrator::Administrator(const char* firstName, const char* lastName, const char* email) :User(firstName, lastName, email,
     "DEFAULT_PASSWORD")
 {
     setPassword();
@@ -22,13 +22,13 @@ std::istream& operator>>(std::istream& is, Administrator& admin)
 
     is >> buff;
     admin.setFirstName(buff);
-    
+
     is >> buff;
     admin.setLastName(buff);
 
     is >> buff;
     admin.setEmail(buff);
-    
+
     return is;
 }
 

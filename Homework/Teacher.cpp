@@ -1,10 +1,11 @@
+
 #include "Teacher.h"
 
-Teacher::Teacher(): User()
+Teacher::Teacher() : User()
 {}
 
-Teacher::Teacher(const char* firstName, const char* lastName, const char* email, const char* password):User(firstName,lastName,
-	email,password)
+Teacher::Teacher(const char* firstName, const char* lastName, const char* email, const char* password) :User(firstName, lastName,
+    email, password)
 {}
 
 std::istream& operator>>(std::istream& is, Teacher& teacher)

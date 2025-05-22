@@ -12,7 +12,7 @@ Course::Course(Teacher teacher, MyString description)
 	setDescription(description);
 }
 
-Course::Course(const char* firstName, const char* lastName, const char* email, 
+Course::Course(const char* firstName, const char* lastName, const char* email,
 	const char* password, MyString description)
 {
 	setTeacher(firstName, lastName, email, password);
@@ -24,7 +24,7 @@ void Course::setTeacher(Teacher teacher)
 	this->teacher = teacher;
 }
 
-void Course::setTeacher(const char* firstName, const char* lastName, const char* email, 
+void Course::setTeacher(const char* firstName, const char* lastName, const char* email,
 	const char* password)
 {
 	teacher.setFirstName(firstName);
@@ -110,6 +110,27 @@ void Course::addStudent(Student student)
 {
 	students.push_back(student);
 }
+
+const Student& Course::getStudents(int index) const
+{
+	return students[index];
+}
+
+size_t Course::getStudentsSize() const
+{
+	return students.getSize();
+}
+
+size_t Course::getTasksSize() const
+{
+	return tasks.getSize();
+}
+
+Task& Course::getTask(int index)
+{
+	return tasks[index];
+}
+
 
 std::ostream& operator<<(std::ostream& os, const Course& course)
 {

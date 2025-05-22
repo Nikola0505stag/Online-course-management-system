@@ -1,3 +1,4 @@
+
 #include "System.h"
 
 // 1 - admin
@@ -60,6 +61,14 @@ void System::makeCourses()
 		courses.push_back(course);
 	}
 	ifs.close();
+}
+
+void System::convertData(char* firstName, char* lastName, char* email, char* password) const
+{
+	strcpy(firstName, this->firstName.c_str());
+	strcpy(lastName, this->lastName.c_str());
+	strcpy(email, this->email.c_str());
+	strcpy(password, this->password.c_str());
 }
 
 
@@ -167,7 +176,7 @@ void System::logIn()
 
 	//std::cout << admin.getID() << " " << admin.getPassword();
 
-	if (ID == admin.getID() && strcmp(password,admin.getPassword()) == 0) {
+	if (ID == admin.getID() && strcmp(password, admin.getPassword()) == 0) {
 		//std::cout << "in";
 		isAdmin = true;
 		std::cout << std::endl << "Welcome Admin " << admin.getFirstName() << " " << admin.getLastName() << std::endl;
@@ -279,7 +288,7 @@ void System::removeStudent()
 	std::cin >> firstName >> lastName;
 
 	std::ifstream ifs("Users.txt");
-	
+
 	MyVector<MyString> data;
 
 	fileToVector(data);
@@ -374,7 +383,7 @@ void System::changePassword()
 
 	std::cout << "\n\nInsert new password:";
 	std::cin >> password;
-	
+
 	this->password = password;
 
 
@@ -398,7 +407,7 @@ void System::sendMessage()
 {
 
 	std::cout << "\nInsert email: ";
-	
+
 	MyString email;
 	std::cin >> email;
 	std::cin.ignore();
@@ -410,16 +419,11 @@ void System::sendMessage()
 	std::ofstream ofs(nameC, std::ios::binary | std::ios::app);
 
 	char firstName[1024];
-	strcpy(firstName, this->firstName.c_str());
-	
 	char lastName[1024];
-	strcpy(lastName, this->lastName.c_str());
-
 	char password[1024];
-	strcpy(password, this->password.c_str());
-
 	char emailC[1024];
-	strcpy(emailC, this->email.c_str());
+
+	convertData(firstName, lastName, emailC, password);
 
 	User curr(firstName, lastName, emailC, password);
 
@@ -429,7 +433,7 @@ void System::sendMessage()
 
 	char buff[1024];
 
-	std::cin.getline(buff,1024);
+	std::cin.getline(buff, 1024);
 
 	//std::cout << "\n\n" << buff;
 
@@ -446,7 +450,7 @@ void System::sendMessage()
 
 void System::viewMessage()
 {
-	
+
 	if (isAdmin) {
 		std::cout << "\nWrite the email you want to check:\t";
 		MyString email;
@@ -467,7 +471,7 @@ void System::viewMessage()
 		}
 
 		ifs.close();
-		
+
 	}
 	else {
 		std::cout << "\n";
@@ -507,20 +511,17 @@ void System::addCourse()
 		char email[1024];
 		char password[1024];
 
-		strcpy(firstName, this->firstName.c_str());
-		strcpy(lastName, this->lastName.c_str());
-		strcpy(email, this->email.c_str());
-		strcpy(password, this->password.c_str());
+		convertData(firstName, lastName, email, password);
 
 
 		Teacher teacher(firstName, lastName, email, password);
 
-		char buff[1024]; 
+		char buff[1024];
 		MyString description;
 
 		std::cout << "Insert name for the course: \n";
 		std::cin.ignore();
-		std::cin.getline(buff,1024);
+		std::cin.getline(buff, 1024);
 
 		description = buff;
 
@@ -550,10 +551,7 @@ void System::addStudentInCourse()
 		char password[1024];
 		char email[1024];
 
-		strcpy(firstNameC, this->firstName.c_str());
-		strcpy(lastNameC, this->lastName.c_str());
-		strcpy(email, this->email.c_str());
-		strcpy(password, this->password.c_str());
+		convertData(firstNameC, lastNameC, email, password);
 
 		Teacher teacher(firstNameC, lastNameC, email, password);
 
@@ -577,7 +575,7 @@ void System::addStudentInCourse()
 		bool found = false;
 
 		for (int i = 0; i < students.getSize(); i++) {
-			if (firstName == students[i].getFirstName() && 
+			if (firstName == students[i].getFirstName() &&
 				lastName == students[i].getLastName()) {
 				// da napisha kakvo stava kato se vidi che studenta realno sustehstvuva
 				found = true;
@@ -616,10 +614,7 @@ void System::addTaskInCourse()
 		char password[1024];
 		char email[1024];
 
-		strcpy(firstNameC, this->firstName.c_str());
-		strcpy(lastNameC, this->lastName.c_str());
-		strcpy(email, this->email.c_str());
-		strcpy(password, this->password.c_str());
+		convertData(firstNameC, lastNameC, email, password);
 
 		Teacher teacher(firstNameC, lastNameC, email, password);
 
@@ -631,16 +626,16 @@ void System::addTaskInCourse()
 
 		for (int i = 0; i < courses.getSize(); i++) {
 			//std::cout << "in";
-			if (courses[i].getDescription() == courseName && 
-				strcmp(firstNameC,courses[i].getTeacher().getFirstName()) == 0 && 
-				strcmp(lastNameC,courses[i].getTeacher().getLastName()) == 0) {
+			if (courses[i].getDescription() == courseName &&
+				strcmp(firstNameC, courses[i].getTeacher().getFirstName()) == 0 &&
+				strcmp(lastNameC, courses[i].getTeacher().getLastName()) == 0) {
 				index = i;
 			}
 		}
 		//std::cout << index;
 
 		if (index == -1)
-			throw std::invalid_argument("Course not found...");
+			throw std::invalid_argument("Course not found or course not belong to u");
 
 		std::cout << "Description/name for your task: \n";
 		//char buff[1024];
@@ -660,11 +655,97 @@ void System::addTaskInCourse()
 		ofs.close();
 	}
 	else {
-		std::cout << "\nYou do not have the authority to add student in course.\n";
+		std::cout << "\nYou do not have the authority to add task in course.\n";
 	}
 }
 
-void System::printCourses() const{
+void System::addAnswer()
+{
+	if (isStudent) {
+		char buff[1024];
+		bool studentFound = false;
+
+		char firstName[1024], lastName[1024], email[1024], password[1024];;
+		convertData(firstName, lastName, email, password);
+
+		//std::cout << firstName;
+		
+		std::cout << "\nInsert course: \n";
+		std::cin.ignore();
+		std::cin.getline(buff, 1024);
+
+		//std::cout << buff;
+
+		MyString desc = buff;
+
+		int courseIndex = -1;
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			if (courses[i].getDescription() == desc) {
+				courseIndex = i;
+			}
+		}
+		if (courseIndex == -1)
+			throw std::invalid_argument("Wrong course...");
+		//std::cout << courseIndex + 1;
+
+		/*for (int i = 0; i < courses[i].getStudentsSize(); i++) {
+
+		}*/
+		//std::cout << courses[courseIndex].getStudentsSize();
+
+		for (int i = 0; i < courses[courseIndex].getStudentsSize(); i++) {
+			if (courses[courseIndex].getStudents(i).getFirstName() == this->firstName &&
+				courses[courseIndex].getStudents(i).getLastName() == this->lastName) {
+				studentFound = true;
+			}
+		}
+		
+		if (studentFound) {
+			std::cout << "\nInsert Task: \n";
+			//std::cin.ignore();
+			std::cin.getline(buff, 1024);
+			desc = buff;
+			std::cout << "\n" << desc << "\n";
+
+			for (int i = 0; i < courses[courseIndex].getTasksSize(); i++) {
+				if (courses[courseIndex].getTask(i).getDescription() == desc) {
+					
+					Student stu(firstName, lastName, email, password);
+					MyString answer;
+					std::cout << "\nInsert answer: \n";
+					std::cin.getline(buff, 1024);
+
+					answer = buff;
+					std::cout << answer;
+
+					Answer ans(stu,answer);
+					courses[courseIndex].getTask(i).addAnswer(ans);
+					
+					
+					std::ofstream ofs("Courses.bin", std::ios::binary);
+
+					for (int i = 0; i < courses.getSize(); i++) {
+						courses[i].writeInBinary(ofs);
+					}
+					ofs.close();
+					return;
+				}
+			}
+
+		}
+		else {
+			throw std::invalid_argument("You don't belong in this course...");
+		}
+
+		
+	}
+	else {
+		std::cout << "\nYou do not have the authority to add answer in course.\n";
+	}
+}
+
+void System::printCourses() const {
 	for (int i = 0; i < courses.getSize(); i++) {
 		std::cout << courses[i];
 		std::cout << "\n\n";

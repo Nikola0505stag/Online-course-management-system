@@ -1,7 +1,7 @@
 #pragma once
 #include "User.h"
 
-class Administrator: public User
+class Administrator : public User
 {
 
 public:
@@ -12,4 +12,3 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Administrator& admin);
 
 };
-

@@ -1,3 +1,4 @@
+
 #pragma once
 #include "Administrator.h"
 #include "Student.h"
@@ -37,6 +38,8 @@ class System
 	void makeMessages();
 	void makeCourses();
 
+	void convertData(char* firstName, char* lastName, char* email, char* password) const;
+
 public:
 	System();
 
@@ -68,7 +71,7 @@ public:
 	void addCourse();
 	void addStudentInCourse();
 	void addTaskInCourse();
+	void addAnswer();
 
 	void printCourses() const;
 };
-

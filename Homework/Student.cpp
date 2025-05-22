@@ -1,25 +1,26 @@
+
 #include "Student.h"
 
-Student::Student(): User()
+Student::Student() : User()
 {}
 
-Student::Student(const char* firstName, const char* lastName, const char* email, const char* password): User(firstName,lastName,
-	email, password)
+Student::Student(const char* firstName, const char* lastName, const char* email, const char* password) : User(firstName, lastName,
+    email, password)
 {}
 
 void Student::addGrade(double grade)
 {
-	grades.push_back(grade);
+    grades.push_back(grade);
 }
 
 size_t Student::getGradesSize() const
 {
-	return grades.getSize();
+    return grades.getSize();
 }
 
 size_t Student::getGradesCapacity() const
 {
-	return grades.getCapacity();
+    return grades.getCapacity();
 }
 
 std::istream& operator>>(std::istream& is, Student& student)

@@ -86,5 +86,3 @@ std::ostream& operator<<(std::ostream& os, const Answer& answer)
 
 	return os;
 }
-
-

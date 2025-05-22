@@ -1,3 +1,4 @@
+
 #pragma once
 #include "User.h"
 
@@ -12,5 +13,3 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Teacher& teacher);
 
 };
-
-

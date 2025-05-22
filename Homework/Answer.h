@@ -1,3 +1,4 @@
+
 #pragma once
 #include "User.h"
 #include "MyString.h"
@@ -16,7 +17,7 @@ public:
 
 	const Student getStudent() const;
 	const MyString getAnswer() const;
-	
+
 	void setStudent(Student user);
 	void setStudent(const char* firstName, const char* lastName, const char* email,
 		const char* password);
@@ -29,4 +30,3 @@ public:
 	void writeInBinary(std::ofstream& ofs) const;
 	void readFromBinary(std::ifstream& ifs);
 };
-

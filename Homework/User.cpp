@@ -1,3 +1,4 @@
+
 #include "User.h"
 
 int User::counter = 100;
@@ -36,10 +37,10 @@ void User::setEmail(const char* email)
 		throw std::invalid_argument("Email is nullptr...");
 	if (this->email == email)
 		return;
-	
-	if(this->email != nullptr)
+
+	if (this->email != nullptr)
 		delete[] this->email;
-	
+
 	this->email = new char[strlen(email) + 1];
 	strcpy(this->email, email);
 }
@@ -52,7 +53,7 @@ void User::setPassword(const char* password)
 		return;
 
 
-	if(this->password != nullptr)
+	if (this->password != nullptr)
 		delete[] this->password;
 
 	this->password = new char[strlen(password) + 1];
@@ -107,7 +108,7 @@ void User::writeInBinary(std::ofstream& ofs) const
 	ofs.write((const char*)&len, sizeof(len));
 	ofs.write(email, len);
 
-	
+
 	ofs.write((const char*)&ID, sizeof(ID));
 }
 
@@ -141,7 +142,7 @@ void User::free()
 	delete[] lastName;
 	delete[] email;
 	delete[] password;
-	
+
 	firstName = nullptr;
 	lastName = nullptr;
 	email = nullptr;
@@ -244,12 +245,12 @@ User::~User()
 
 std::ostream& operator<<(std::ostream& os, const User& user)
 {
-		os << "---------------------------------------------------\n";
-		os << "ID: " << user.getID() << "\n";
-		os << "FIRST NAME: " << user.getFirstName() << "\n";
-		os << "LAST NAME: " << user.getLastName() << "\n";
-		os << "EMAIL: " << user.getEmail() << "\n";
-		os << "PASSWORD: " << user.getPassword() << "\n";
-		os << "---------------------------------------------------\n";
-		return os;
+	os << "---------------------------------------------------\n";
+	os << "ID: " << user.getID() << "\n";
+	os << "FIRST NAME: " << user.getFirstName() << "\n";
+	os << "LAST NAME: " << user.getLastName() << "\n";
+	os << "EMAIL: " << user.getEmail() << "\n";
+	os << "PASSWORD: " << user.getPassword() << "\n";
+	os << "---------------------------------------------------\n";
+	return os;
 }

@@ -3,3 +3,5 @@
 2 Dimitar Dobrev dimitur@abv.bg 3030
 3 Qna Vasileva qna@abv.bg 0101
 2 Krum Krum krum@abv.bg 10231232
+3 Ivan Gadjev ivan@abv.bg 9999
+3 Maq Maq maq@abv.bg 4343

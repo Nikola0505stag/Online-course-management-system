@@ -8,7 +8,8 @@ Student::Student(const char* firstName, const char* lastName, const char* email,
     email, password)
 {}
 
-void Student::addGrade(double grade)
+
+void Student::addGrade(Grade grade)
 {
     grades.push_back(grade);
 }
@@ -52,7 +53,7 @@ std::ostream& operator<<(std::ostream& os, const Student& student)
     os << "PASSWORD: " << student.getPassword() << "\n";
     os << "GRADES: ";
     for (int i = 0; i < student.getGradesSize(); i++) {
-        os << student.grades[i] << " ";
+        os << student.grades[i] << "\n";
     }
     os << std::endl;
     os << "---------------------------------------------------\n";

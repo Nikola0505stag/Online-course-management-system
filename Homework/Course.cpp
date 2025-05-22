@@ -111,7 +111,7 @@ void Course::addStudent(Student student)
 	students.push_back(student);
 }
 
-const Student& Course::getStudents(int index) const
+Student& Course::getStudents(int index)
 {
 	return students[index];
 }

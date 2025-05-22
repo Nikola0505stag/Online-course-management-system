@@ -38,7 +38,7 @@ public:
 
 	void addStudent(Student student);
 
-	const Student& getStudents(int index) const;
+	Student& getStudents(int index);
 	size_t getStudentsSize() const;
 
 	size_t getTasksSize() const;

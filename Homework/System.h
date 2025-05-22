@@ -72,6 +72,7 @@ public:
 	void addStudentInCourse();
 	void addTaskInCourse();
 	void addAnswer();
+	void addGrade();
 
-	void printCourses() const;
+	void printCourses();
 };

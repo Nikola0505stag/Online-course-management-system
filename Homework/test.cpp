@@ -14,29 +14,28 @@ using namespace std;
 int main() {
 
 
-	/*System st;
+	System st;
 	st.print();
-	st.logIn();*/
-
-
+	st.logIn();
+	
 	//st.addCourse();
-
-	//cout << "\n\n\n\n";
+	
+	/*cout << "\n\n\n\n";
+	st.printCourses();
+	st.addStudentInCourse();
+	st.addTaskInCourse();
+	st.addAnswer();
+	cout << "\n\n\n\n";
+	*/
+	/*st.addTaskInCourse();
+	
+	st.addAnswer();*/
+	cout << "\n\n\n\n\n\n\n";
+	//st.addGrade();
+	cout << "\n\n\n\n\n\n\n";
+	
+	st.printCourses();
 	//st.printCourses();
-	//st.addStudentInCourse();
-	//st.addTaskInCourse();
-	//st.addAnswer();
-	//cout << "\n\n\n\n";
-
-	//st.addTaskInCourse();
-
-	//st.addAnswer();
-
-
-	Grade grade; 
-	cout << grade << "\n";
-	cin >> grade;
-	cout << "\n\n" << grade << "\n\n";
 
 	return 0;
 }

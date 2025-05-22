@@ -745,7 +745,70 @@ void System::addAnswer()
 	}
 }
 
-void System::printCourses() const {
+void System::addGrade()
+{
+	printCourses();
+	if (isTeacher) {
+		char buff[1024];
+		std::cout << "Insert course: \n";
+		std::cin.ignore();
+		std::cin.getline(buff, 1024);
+		
+		MyString desc = buff;
+
+		bool found = false;
+		size_t index = -1;
+
+		for (int i = 0; i < courses.getSize(); i++) {
+			if (courses[i].getTeacher().getFirstName() == this->firstName &&
+				courses[i].getTeacher().getLastName() == this->lastName) {
+				if (courses[i].getDescription() == desc) {
+					index = i;
+				}
+			}
+		}
+		//std::cout << index;
+
+		//std::cout << courses[index];
+
+		std::cout << "Insert student: \n";
+
+		std::cin >> buff;
+		MyString first = buff;
+		std::cin >> buff;
+		MyString last = buff;
+
+		//std::cout << first << "\t" << last;
+
+
+		for (int i = 0; i < courses[index].getStudentsSize(); i++) {
+			//std::cout <<"\n in \t"<< courses[index].getStudents(i).getFirstName() << "\t";
+			//std::cout << courses[index].getStudents(i).getLastName();
+
+			if (courses[index].getStudents(i).getFirstName() == first &&
+				courses[index].getStudents(i).getLastName() == last) {
+				Grade grade;
+				courses[index].getStudents(i).addGrade(grade);
+			}
+		}
+		std::ofstream ofs("Courses.bin", std::ios::binary);
+		for (int i = 0; i < courses.getSize(); i++) {
+			courses[i].writeInBinary(ofs);
+		}
+		ofs.close();
+		return;
+
+		throw std::invalid_argument("No student found");
+
+
+		//std::cout << found;
+	}
+	else {
+		std::cout << "\nYou do not have the authority to add grade.\n";
+	}
+}
+
+void System::printCourses() {
 	if (isTeacher) {
 		for (int i = 0; i < courses.getSize(); i++) {
 			if (courses[i].getTeacher().getFirstName() == this->firstName &&

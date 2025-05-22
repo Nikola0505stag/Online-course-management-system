@@ -108,7 +108,6 @@ void User::writeInBinary(std::ofstream& ofs) const
 	ofs.write((const char*)&len, sizeof(len));
 	ofs.write(email, len);
 
-
 	ofs.write((const char*)&ID, sizeof(ID));
 }
 

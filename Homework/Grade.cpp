@@ -61,6 +61,52 @@ void Grade::setGrade(double grade)
 	this->grade = grade;
 }
 
+void Grade::writeInBinary(std::ofstream& ofs) const
+{
+	size_t len;
+	len = course.getSize() + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(course.c_str(), len);
+
+	len = task.getSize() + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(task.c_str(), len);
+
+	len = description.getSize() + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(description.c_str(), len);
+	
+	ofs.write((const char*)&grade, sizeof(grade));
+
+}
+
+void Grade::readFromBinary(std::ifstream& ifs)
+{
+	size_t len;
+	char* buff;
+
+	ifs.read((char*)&len, sizeof(len));
+	buff = new char[len];
+	ifs.read(buff, len);
+	course = buff;
+	delete[] buff;
+
+	ifs.read((char*)&len, sizeof(len));
+	buff = new char[len];
+	ifs.read(buff, len);
+	task = buff;
+	delete[] buff;
+
+	ifs.read((char*)&len, sizeof(len));
+	buff = new char[len];
+	ifs.read(buff, len);
+	description = buff;
+	delete[] buff;
+
+	ifs.read((char*)&grade, sizeof(grade));
+}
+
+
 std::istream& operator>>(std::istream& is, Grade& grade)
 {
 	char buff[1024];

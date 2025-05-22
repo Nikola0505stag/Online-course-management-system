@@ -18,24 +18,17 @@ int main() {
 	st.print();
 	st.logIn();
 	
-	//st.addCourse();
-	
-	/*cout << "\n\n\n\n";
-	st.printCourses();
-	st.addStudentInCourse();
-	st.addTaskInCourse();
-	st.addAnswer();
-	cout << "\n\n\n\n";
-	*/
-	/*st.addTaskInCourse();
-	
-	st.addAnswer();*/
-	cout << "\n\n\n\n\n\n\n";
-	//st.addGrade();
-	cout << "\n\n\n\n\n\n\n";
-	
-	st.printCourses();
-	//st.printCourses();
 
+	cout << "\n\n\n\n\n\n\n";
+
+	cout << "\n\n\n\n\n\n\n";
+	
+	st.printCourses();
+
+	//st.addGrade();
+	
+
+
+	
 	return 0;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "MyString.h"
+#include <fstream>
 class Grade
 {
 	MyString course;
@@ -23,5 +24,8 @@ public:
 	void setTask(const MyString& task);
 	void setDescription(const MyString& description);
 	void setGrade(double grade);
+
+	void writeInBinary(std::ofstream& ofs) const;
+	void readFromBinary(std::ifstream& ifs);
 };
 

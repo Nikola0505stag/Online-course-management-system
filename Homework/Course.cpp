@@ -72,7 +72,7 @@ void Course::writeInBinary(std::ofstream& ofs) const
 	size = students.getSize();
 	ofs.write((const char*)&size, sizeof(size));
 	for (int i = 0; i < size; i++) {
-		students[i].writeInBinary(ofs);
+		students[i].writeInFile(ofs);
 	}
 }
 
@@ -101,7 +101,7 @@ void Course::readFromBinary(std::ifstream& ifs)
 	ifs.read((char*)&size, sizeof(size));
 	for (int i = 0; i < size; i++) {
 		Student student;
-		student.readFromBinary(ifs);
+		student.readFromFile(ifs);
 		students.push_back(student);
 	}
 }

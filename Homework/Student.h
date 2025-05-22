@@ -21,4 +21,7 @@ public:
 
 	friend std::istream& operator>>(std::istream& is, Student& student);
 	friend std::ostream& operator<<(std::ostream& os, const Student& student);
+
+	void writeInFile(std::ofstream& ofs)const;
+	void readFromFile(std::ifstream& ifs);
 };

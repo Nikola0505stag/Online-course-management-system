@@ -779,7 +779,7 @@ void System::addGrade()
 		MyString last = buff;
 
 		//std::cout << first << "\t" << last;
-
+		bool studentFound = false;
 
 		for (int i = 0; i < courses[index].getStudentsSize(); i++) {
 			//std::cout <<"\n in \t"<< courses[index].getStudents(i).getFirstName() << "\t";
@@ -787,16 +787,39 @@ void System::addGrade()
 
 			if (courses[index].getStudents(i).getFirstName() == first &&
 				courses[index].getStudents(i).getLastName() == last) {
-				Grade grade;
+
+				
+				std::cout << "Insert comment: \n";
+				std::cin.ignore();
+				std::cin.getline(buff, 1024);
+				MyString description = buff;
+
+				double gradeD;
+				std::cout << "Insert grade: \n";
+				std::cin >> gradeD;
+
+				std::cout << "Insert task: \n";
+				std::cin.ignore();
+				std::cin.getline(buff, 1024);
+				MyString task = buff;
+
+				Grade grade(desc,task,gradeD,description);
 				courses[index].getStudents(i).addGrade(grade);
+
+				studentFound = true;
 			}
 		}
-		std::ofstream ofs("Courses.bin", std::ios::binary);
-		for (int i = 0; i < courses.getSize(); i++) {
-			courses[i].writeInBinary(ofs);
+		if(studentFound)
+		{
+			std::ofstream ofs("Courses.bin", std::ios::binary);
+			for (int i = 0; i < courses.getSize(); i++) {
+				courses[i].writeInBinary(ofs);
+			}
+			ofs.close();
+			return;
 		}
-		ofs.close();
-		return;
+
+		
 
 		throw std::invalid_argument("No student found");
 

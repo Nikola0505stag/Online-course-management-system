@@ -17,13 +17,28 @@ int main() {
 	System st;
 	st.print();
 	st.logIn();
-	
 
+	//st.addStudent();
+
+	//st.addCourse();
+	//st.printCourses();
+	//st.addStudentInCourse();
+	//st.addStudentInCourse();
+	
+	//st.addTaskInCourse();
+
+	//st.addAnswer();
+	//st.addGrade();
 	cout << "\n\n\n\n\n\n\n";
 
+	//st.sendMessageInCourse();
+
+	
+	st.viewMessage();
+
 	cout << "\n\n\n\n\n\n\n";
 	
-	st.printCourses();
+	/*st.printCourses();*/
 
 	//st.addGrade();
 	

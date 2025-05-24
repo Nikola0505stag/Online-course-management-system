@@ -40,6 +40,8 @@ class System
 
 	void convertData(char* firstName, char* lastName, char* email, char* password) const;
 
+	size_t getCourseIndex(MyString curr);
+
 public:
 	System();
 
@@ -73,6 +75,8 @@ public:
 	void addTaskInCourse();
 	void addAnswer();
 	void addGrade();
+
+	void sendMessageInCourse();
 
 	void printCourses();
 };

@@ -1,7 +1,7 @@
-1 Valetin Neychev valneichev@abv.bg DEFAULT
-2 Valentin Vulkov valval@abv.bg 1002
-2 Dimitar Dobrev dimitur@abv.bg 3030
-3 Qna Vasileva qna@abv.bg 0101
-2 Krum Krum krum@abv.bg 10231232
-3 Ivan Gadjev ivan@abv.bg 9999
-3 Maq Maq maq@abv.bg 4343
+1 Valetin Neychev valneichev@abv.bg DEFAULT 
+3 Nikola Neychev nikneichev@abv.bg 0001 
+3 Maq Maq maq@abv.bg 0002 
+3 Ivan Gadjev ivan@abv.bg 0003 
+2 Valentin Vulkov val@abv.bg 1001 
+2 Georgi Ivanov georgi@abv.bg 1003 
+2 Krum Krum krum@abv.bg 1004

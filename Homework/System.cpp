@@ -71,6 +71,17 @@ void System::convertData(char* firstName, char* lastName, char* email, char* pas
 	strcpy(password, this->password.c_str());
 }
 
+size_t System::getCourseIndex(MyString curr)
+{
+	int index = -1;
+	for (int i = 0; i < courses.getSize(); i++) {
+		if (courses[i].getDescription() == curr) {
+			index = i;
+		}
+	}
+	return index;
+}
+
 
 System::System()
 {
@@ -561,13 +572,10 @@ void System::addStudentInCourse()
 		std::cin.getline(buff, 1024);
 		MyString courseName = buff; //std::cout << courseName;
 
-		for (int i = 0; i < courses.getSize(); i++) {
-			//std::cout << "in";
-			if (courses[i].getDescription() == courseName) {
-				index = i;
-			}
-		}
+		index = getCourseIndex(courseName);
 
+		/*if (index == -1)
+			throw std::invalid_argument("No course founded...");*/
 
 		std::cout << "Insert first name and last name of the student: \n";
 		std::cin >> firstName >> lastName;
@@ -678,13 +686,10 @@ void System::addAnswer()
 
 		MyString desc = buff;
 
-		int courseIndex = -1;
+		int courseIndex;
 
-		for (int i = 0; i < courses.getSize(); i++) {
-			if (courses[i].getDescription() == desc) {
-				courseIndex = i;
-			}
-		}
+		courseIndex = getCourseIndex(desc);
+
 		if (courseIndex == -1)
 			throw std::invalid_argument("Wrong course...");
 		//std::cout << courseIndex + 1;
@@ -829,6 +834,76 @@ void System::addGrade()
 	else {
 		std::cout << "\nYou do not have the authority to add grade.\n";
 	}
+}
+
+void System::sendMessageInCourse()
+{
+	if (isTeacher) {
+
+		char buff[1024];
+
+		std::cout << "Insert course: \n";
+		std::cin.ignore();
+		std::cin.getline(buff, 1024);
+
+		MyString courseMy = buff;
+		int index;
+
+		index = getCourseIndex(buff);
+
+		if (index == -1)
+			throw std::invalid_argument("Course not found...");
+
+		if (courses[index].getTeacher().getFirstName() == this->firstName &&
+			courses[index].getTeacher().getLastName() == this->lastName) {
+			
+			MyString content;
+
+			std::cout << std::endl << "Type what you want: \n";
+
+			char buff[1024];
+
+			std::cin.getline(buff, 1024);
+
+			//std::cout << "\n\n" << buff;
+
+			content = buff;
+
+			char firstName[1024];
+			char lastName[1024];
+			char password[1024];
+			char emailC[1024];
+
+			convertData(firstName, lastName, emailC, password);
+
+			User curr(firstName, lastName, emailC, password);
+
+			for (int i = 0; i < courses[index].getStudentsSize(); i++) {
+				
+				MyString name = (MyString)courses[index].getStudents(i).getEmail() + ".bin";
+
+				char nameC[1024];
+				strcpy(nameC, name.c_str());
+
+				std::ofstream ofs(nameC, std::ios::binary | std::ios::app);
+
+				
+
+				Message message(curr, content);
+				message.writeInBinary(ofs);
+
+				ofs.close();
+			}
+
+		}
+		else {
+			throw std::invalid_argument("This course doesn't belong to u");
+		}
+	}
+	else {
+		std::cout << "\nYou do not have the authority to send message in course.\n";
+	}
+
 }
 
 void System::printCourses() {

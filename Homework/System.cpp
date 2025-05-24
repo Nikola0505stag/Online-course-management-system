@@ -85,6 +85,19 @@ size_t System::getCourseIndex(MyString curr)
 
 System::System()
 {
+
+	/*std::ifstream ifs("Students.bin", std::ios::binary);
+	size_t size;
+	ifs.read((char*)&size, sizeof(size));
+
+	for (int i = 0; i < size; i++) {
+		Student st;
+		st.readFromFile(ifs);
+		students.push_back(st);
+	}
+	ifs.close();*/
+
+
 	std::ifstream ifs("Users.txt");
 
 	int buffI;
@@ -459,7 +472,7 @@ void System::sendMessage()
 
 }
 
-void System::viewMessage()
+void System::viewMessage() const
 {
 
 	if (isAdmin) {
@@ -786,6 +799,15 @@ void System::addGrade()
 		//std::cout << first << "\t" << last;
 		bool studentFound = false;
 
+		/*int indexSt = -1;
+
+		for (int i = 0; i < students.getSize(); i++) {
+			if (students[i].getFirstName() == first && students[i].getLastName() == last) {
+				indexSt = i;
+			}
+		}
+		if (indexSt == -1) throw std::invalid_argument("Student don't exists...");*/
+
 		for (int i = 0; i < courses[index].getStudentsSize(); i++) {
 			//std::cout <<"\n in \t"<< courses[index].getStudents(i).getFirstName() << "\t";
 			//std::cout << courses[index].getStudents(i).getLastName();
@@ -810,6 +832,7 @@ void System::addGrade()
 
 				Grade grade(desc,task,gradeD,description);
 				courses[index].getStudents(i).addGrade(grade);
+				//students[indexSt].addGrade(grade);
 
 				studentFound = true;
 			}
@@ -822,6 +845,17 @@ void System::addGrade()
 			}
 			ofs.close();
 			return;
+
+			/*std::ofstream ofs("Students.bin", std::ios::binary);
+			size_t size = students.getSize();
+			ofs.write((const char*)&size, sizeof(size));
+
+			for (int i = 0; i < students.getSize(); i++) {
+				students[i].writeInFile(ofs);
+			}
+			ofs.close();
+
+			return;*/
 		}
 
 		
@@ -904,6 +938,33 @@ void System::sendMessageInCourse()
 		std::cout << "\nYou do not have the authority to send message in course.\n";
 	}
 
+}
+
+void System::viewGrades()
+{
+	if (isStudent) {
+		for (int i = 0; i < courses.getSize(); i++) {
+			for (int j = 0; j < courses[i].getStudentsSize(); j++) {
+				if (courses[i].getStudents(j).getFirstName() == this->firstName &&
+					courses[i].getStudents(j).getLastName() == this->lastName) {
+					std::cout << courses[i].getStudents(j);
+					break;
+				}
+			}
+			end:
+		}
+
+		/*for (int i = 0; i < students.getSize(); i++) {
+			if (students[i].getFirstName() == this->firstName &&
+				students[i].getLastName() == this->lastName) {
+				std::cout << students[i];
+				return;
+			}
+		*////}
+	}
+	else {
+		std::cout << "\nYou do not have the authority to view grades.\n";
+	}
 }
 
 void System::printCourses() {

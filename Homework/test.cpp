@@ -17,32 +17,45 @@ int main() {
 	System st;
 	st.print();
 	st.logIn();
-
-	//st.addStudent();
-
-	//st.addCourse();
-	//st.printCourses();
-	//st.addStudentInCourse();
-	//st.addStudentInCourse();
 	
-	//st.addTaskInCourse();
 
+	st.printCourses();
+
+	//st.viewGrades();
+
+	//st.addStudentInCourse();
+	//st.addTaskInCourse();
 	//st.addAnswer();
 	//st.addGrade();
-	cout << "\n\n\n\n\n\n\n";
-
-	//st.sendMessageInCourse();
-
-	
-	st.viewMessage();
-
-	cout << "\n\n\n\n\n\n\n";
-	
-	/*st.printCourses();*/
-
 	//st.addGrade();
-	
 
+	st.viewGrades();
+
+	/*st.addGrade(); */
+	//st.addCourse();
+
+
+	//
+	////st.addTaskInCourse();
+
+	////st.addAnswer();
+	////st.addGrade();
+	//cout << "\n\n\n\n\n\n\n";
+
+	////st.sendMessageInCourse();
+
+	//
+	//st.viewMessage();
+
+	//cout << "\n\n\n\n\n\n\n";
+	//
+	///*st.printCourses();*/
+
+	////st.addGrade();
+	//
+
+	//Course course("Nikola", "Neychev", "nikneichev@abv.bg", "00101", "DIS 1"/*, "disPa"*/);
+	//cout << course;
 
 	
 	return 0;

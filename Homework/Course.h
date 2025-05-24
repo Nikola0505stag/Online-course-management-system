@@ -29,6 +29,9 @@ public:
 
 	MyString getDescription() const;
 
+	//void setPassword(MyString password);
+	//MyString getPassword() const;
+
 	friend std::ostream& operator<<(std::ostream& os, const Course& course);
 
 	void addTask(Task task);

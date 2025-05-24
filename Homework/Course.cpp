@@ -4,19 +4,22 @@ Course::Course()
 {
 	setTeacher("DEFAULT_FIRST_NAME", "DEFAULT_LAST_NAME", "DEFAULT_EMAIL", "DEFAULT_PASSWORD");
 	setDescription("DEFAULT_DESCRIPTION");
+	//setPassword("DEFAULT_PASSWORD");
 }
 
-Course::Course(Teacher teacher, MyString description)
+Course::Course(Teacher teacher, MyString description/*, MyString password*/)
 {
 	setTeacher(teacher);
 	setDescription(description);
+	//setPassword(password);
 }
 
 Course::Course(const char* firstName, const char* lastName, const char* email,
-	const char* password, MyString description)
+	const char* password, MyString description/*, MyString passwordM*/)
 {
 	setTeacher(firstName, lastName, email, password);
 	setDescription(description);
+	//setPassword(passwordM);
 }
 
 void Course::setTeacher(Teacher teacher)
@@ -48,6 +51,16 @@ MyString Course::getDescription() const
 	return description;
 }
 
+//void Course::setPassword(MyString password)
+//{
+//	this->password = password;
+//}
+
+//MyString Course::getPassword() const
+//{
+//	return password;
+//}
+
 void Course::addTask(Task task)
 {
 	tasks.push_back(task);
@@ -74,6 +87,10 @@ void Course::writeInBinary(std::ofstream& ofs) const
 	for (int i = 0; i < size; i++) {
 		students[i].writeInFile(ofs);
 	}
+
+	/*len = password.getSize() + 1;
+	ofs.write((const char*)&len, sizeof(len));
+	ofs.write(password.c_str(), len);*/
 }
 
 void Course::readFromBinary(std::ifstream& ifs)
@@ -104,6 +121,15 @@ void Course::readFromBinary(std::ifstream& ifs)
 		student.readFromFile(ifs);
 		students.push_back(student);
 	}
+
+	/*ifs.read((char*)&len, sizeof(len));
+
+	buff = new char[len];
+	ifs.read(buff, len);
+	password = buff;
+
+
+	delete[] buff;*/
 }
 
 void Course::addStudent(Student student)
@@ -154,6 +180,10 @@ std::ostream& operator<<(std::ostream& os, const Course& course)
 	for (int i = 0; i < course.students.getSize(); i++) {
 		os << course.students[i];
 	}
+	/*os << "---------------------------------------------------\n";
+	os << "PASSWORD: \n";
+	os << "---------------------------------------------------\n";
+	os << course.password;*/
 	os << "---------------------------------------------------\n";
 	return os;
 }

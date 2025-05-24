@@ -67,7 +67,7 @@ public:
 	void changePassword();
 
 	void sendMessage();
-	void viewMessage();
+	void viewMessage() const;
 	void deleteMessage();
 
 	void addCourse();
@@ -77,6 +77,9 @@ public:
 	void addGrade();
 
 	void sendMessageInCourse();
+
+
+	void viewGrades();
 
 	void printCourses();
 };

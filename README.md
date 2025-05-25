@@ -1,4 +1,4 @@
-# Homework
+# Online course management system
 
 An online course management system that allows management of users with different roles: Administrator, Teachers and Students. Each user has a first name, last name, unique identification number and an inbox for receiving messages. Each message is characterized by sender, content, date and time. The system includes course management, assignments and assessments.
 
